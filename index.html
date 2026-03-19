@@ -43,6 +43,8 @@
 </head>
 
 <body>
+  <div class="aura-orb orb-1"></div>
+  <div class="aura-orb orb-2"></div>
   <div class="mesh-bg"></div>
 
   <nav class="glass">
@@ -52,10 +54,9 @@
         <span class="logo-text">FLOW</span>
       </div>
       <div class="nav-links">
-        <a href="#features">Features</a>
+        <a href="#features">Systems</a>
+        <a href="#jokes">Why Flow?</a>
         <a href="#habits">Habits</a>
-        <a href="#calendar">Calendar</a>
-        <a href="#gallery">Gallery</a>
         <a href="#pricing">Pricing</a>
         <div id="auth-nav" style="display: flex; align-items: center; gap: 16px;">
           <button class="btn btn-ghost" id="login-nav-btn" style="padding: 8px 16px; font-size: 14px;">Sign In</button>
@@ -71,120 +72,140 @@
     </div>
   </nav>
 
-    <header class="hero">
-      <div class="container hero-content">
-        <h1 class="animate-fade-in responsive-title">
-          Triple Your <span class="text-accent">Output Momentum</span>
-        </h1>
-        <p class="animate-fade-in delay-1">
-          The only execution suite engineered to bypass ADHD friction. Stop
-          planning, start winning, and achieve 3x more in a single deep-work
-          session.
-        </p>
-        <div class="hero-btns animate-fade-in delay-2">
-          <a
-            href="https://github.com/N1k0Devv/flow/releases/download/flow/Flow.Setup.1.1.0.exe"
-            class="btn btn-primary btn-lg"
-            download
-            >Download Now</a
-          >
-          <a href="#new-features" class="btn btn-ghost btn-lg">Explore v1.2</a>
-        </div>
+  <header class="hero">
+    <div class="container hero-content">
+      <h1 class="animate-fade-in responsive-title">
+        Triple Your <span class="text-accent">Output Momentum</span>
+      </h1>
+      <p class="animate-fade-in delay-1">
+        The only execution suite engineered to bypass ADHD friction. Stop
+        planning, start winning, and achieve 3x more in a single deep-work
+        session.
+      </p>
+      <div class="hero-btns animate-fade-in delay-2">
+        <a href="https://github.com/N1k0Devv/flow/releases/download/flow/Flow.Setup.1.1.0.exe"
+          class="btn btn-primary btn-lg" download>Download Now</a>
+        <a href="#jokes" class="btn btn-ghost btn-lg">Why We Built This?</a>
+      </div>
 
-        <div class="hero-preview animate-float">
-          <img
-            src="assets/img/screenshots/focus_real.png"
-            alt="Productive v1.2 Active Focus View"
-            class="app-screenshot shadow-premium"
-          />
-          <div class="glow-orb"></div>
+      <div class="hero-preview animate-float">
+        <img src="assets/img/screenshots/focus_real.png" alt="Productive v1.2 Active Focus View"
+          class="app-screenshot shadow-premium" />
+        <div class="glow-orb"></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="jokes" class="jokes-section reveal" style="padding: 100px 0; background: rgba(0, 255, 136, 0.02);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h4>The Reality</h4>
+        <h2>Designed for the <span class="text-accent">Hyperfocus Brain</span></h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 60px;">
+        <div class="glass" style="padding: 40px; border-radius: 24px; position: relative;">
+          <p style="font-size: 18px; line-height: 1.6; color: var(--text-primary); font-style: italic;">"Standard Planners: <i>'Write down your goals.'</i><br>Flow: <b>'Bro just push the button, I'll take care of the rest.'</b>"</p>
+        </div>
+        <div class="glass" style="padding: 40px; border-radius: 24px; position: relative;">
+          <p style="font-size: 18px; line-height: 1.6; color: var(--text-primary); font-style: italic;">"Why use Flow? Because without the Recalibration chime, you'd still be reading the Wikipedia page for 16th-century lighthouse architecture."</p>
+        </div>
+        <div class="glass" style="padding: 40px; border-radius: 24px; position: relative;">
+          <p style="font-size: 18px; line-height: 1.6; color: var(--text-primary); font-style: italic;">"Standard Timer: *BEEP BEEP* (Instant Panic).<br>Flow: *Soft 528Hz hum* (I got you, come back to base)."</p>
         </div>
       </div>
-    </header>
-
-    <section id="new-features" class="features reveal" style="background: rgba(0, 255, 136, 0.02);">
-      <div class="container">
-        <div class="section-header">
-          <h4 class="reveal">V1.2 UPDATE</h4>
-          <h2 class="reveal">Experience the <span class="text-accent">New Era of Flow</span></h2>
-          <p class="reveal" style="margin-top: 16px; color: var(--text-secondary);">We've rebuilt the core experience with gamification and deep focus systems.</p>
-        </div>
-
-        <div class="features-grid">
-          <div class="feature-card glass featured-update reveal">
-            <div class="badge badge-active">NEW</div>
-            <div class="feature-icon">🍅</div>
-            <h3>Focus Cycles</h3>
-            <p>
-              Automated Pomodoro 25/5 cycles with a professional "Woo-hoo!" victory ceremony on completion. Never lose momentum again.
-            </p>
-          </div>
-          <div class="feature-card glass featured-update reveal">
-            <div class="badge badge-active">NEW</div>
-            <div class="feature-icon">⚡</div>
-            <h3>XP & Leveling</h3>
-            <p>
-              Maintain heat streaks and level up as you crush your daily missions. Your productivity, now a high-score game.
-            </p>
-          </div>
-          <div class="feature-card glass featured-update reveal">
-            <div class="badge badge-active">NEW</div>
-            <div class="feature-icon">🌿</div>
-            <h3>Habit Garden</h3>
-            <p>
-              Watch your consistency grow. A beautiful grid-based visualization of your daily rituals and long-term momentum.
-            </p>
-          </div>
-          <div class="feature-card glass featured-update reveal">
-            <div class="badge badge-active">NEW</div>
-            <div class="feature-icon">🔔</div>
-            <h3>Recalibration</h3>
-            <p>
-              Soft 528Hz chimes keep you centered. Tag your tasks for deep organization and bypass the "Wall of Awful" with ease.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
+  </section>
 
   <section id="features" class="features reveal">
     <div class="container">
       <div class="section-header reveal">
-        <h4>Core Systems</h4>
-        <h2>Defeat the <span class="text-accent">Wall of Awful</span></h2>
+        <h4>The Full Arsenal</h4>
+        <h2>Engineered for <span class="text-accent">High-Performance Output</span></h2>
       </div>
 
       <div class="features-grid">
-        <div class="feature-card glass">
+        <div class="feature-card glass reveal">
           <div class="feature-icon">◎</div>
-          <h3>Active Focus</h3>
+          <h3>Active Focus View</h3>
           <p>
-            Single-task view that eliminates distractions. Complete subtasks,
-            track progress, and earn focus blocks.
+            The single-task dashboard that eliminates decision paralysis. Manage subtasks and track progress without distraction.
           </p>
         </div>
-        <div class="feature-card glass">
-          <div class="feature-icon">⟳</div>
-          <h3>Recalibration</h3>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🔊</div>
+          <h3>Sound Pass</h3>
           <p>
-            528Hz soft chime every 10 minutes helps snap you back from
-            distraction without the jar of a loud alarm.
+            The ultimate audio customization. Use your own sounds for completion (Apple Pay) or Recalibration (RIS). Your focus, your rhythm.
           </p>
         </div>
-        <div class="feature-card glass">
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🔔</div>
+          <h3>Recalibration (RIS)</h3>
+          <p>
+            Soft 528Hz hums every 10 mins. It raises you back to your task whenever you get distracted. No panic, just flow.
+          </p>
+        </div>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🧪</div>
+          <h3>Deep Work Mode</h3>
+          <p>
+            System-wide focus. One click mutes your OS audio and creates a digital sensory deprivation tank for pure execution.
+          </p>
+        </div>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🍅</div>
+          <h3>Momentum Timer</h3>
+          <p>
+            Customizable Pomodoro cycles with a professional "Woo-Hoo!" victory ceremony on completion. Turn tasks into wins.
+          </p>
+        </div>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">💰</div>
+          <h3>Dopamine Jar</h3>
+          <p>
+            Collect coins for every win. Watch your Daily Win jar fill up as you accumulate momentum and smash your goals.
+          </p>
+        </div>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">⚡</div>
+          <h3>XP & Leveling</h3>
+          <p>
+            Gain XP for every focus block. Level up from "Focus Novice" to "Flow Master" and track your lifetime evolution.
+          </p>
+        </div>
+        <div class="feature-card glass reveal">
           <div class="feature-icon">🛡️</div>
           <h3>Floating Widget</h3>
           <p>
-            An always-on-top micro-widget that keeps your current objective
-            visible no matter what you're doing.
+            An always-on-top micro-controller. Your current objective stays visible even when you're in other apps.
           </p>
         </div>
-        <div class="feature-card glass">
-          <div class="feature-icon">📈</div>
-          <h3>Analytics</h3>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🗓️</div>
+          <h3>Google Sync Pro</h3>
           <p>
-            Track your daily streaks, focus blocks, and time estimates vs.
-            actual effort with beautiful charts.
+            Full 2-way Google Calendar integration. Drag focus blocks onto your schedule and stay synced across devices.
+          </p>
+        </div>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🕹️</div>
+          <h3>Command Palette</h3>
+          <p>
+            `Ctrl + K` to control everything. Navigate, add tasks, and trigger focus modes without ever touching your mouse.
+          </p>
+        </div>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">💎</div>
+          <h3>Quick Capture</h3>
+          <p>
+            `Ctrl + Shift + Space` to capture ideas instantly from anywhere on your OS. Frictionless brainstorming.
+          </p>
+        </div>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">📈</div>
+          <h3>Time Mastery</h3>
+          <p>
+            Advanced analytics track Estimated vs. Actual time. Defeat time blindness and internalize your true output speed.
           </p>
         </div>
       </div>
@@ -352,16 +373,16 @@
         <a href="refund.html">Refunds</a>
       </div>
       <div class="footer-right">
+        <a href="https://N1kodev.com" target="_blank">Website</a>
         <a href="#">Github</a>
         <a href="#">Twitter</a>
-        <a href="#">Discord</a>
       </div>
     </div>
   </footer>
 
   <!-- Auth Modal -->
-  <div id="auth-modal"
-    style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 9999; align-items: center; justify-content: center; padding: 20px;">
+  <div id="auth-modal" class="auth-modal"
+    style="position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 9999; align-items: center; justify-content: center; padding: 20px;">
     <div
       style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 40px; border-radius: 24px; width: 100%; max-width: 400px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
       <button id="close-auth"

@@ -137,6 +137,30 @@ h4 {
 .text-muted { color: var(--text-muted); }
 
 /* ── Components ────────────────────────────────── */
+.aura-orb {
+  position: fixed;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.orb-1 {
+  background: radial-gradient(circle, var(--accent), transparent);
+  top: -20%;
+  left: -10%;
+  animation: float 20s infinite ease-in-out;
+}
+
+.orb-2 {
+  background: radial-gradient(circle, #44aaff, transparent);
+  bottom: -10%;
+  right: -5%;
+  animation: float 25s infinite ease-in-out reverse;
+}
 .btn {
   display: inline-flex;
   align-items: center;
@@ -774,7 +798,19 @@ footer {
   transform: translateX(0);
 }
 
-/* ── Responsive ────────────────────────────────── */
+/* ── Auth Modal ────────────────────────────────── */
+.auth-modal {
+  display: none !important;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+
+.auth-modal.active {
+  display: flex !important;
+  opacity: 1;
+  pointer-events: auto;
+}
 @media (max-width: 900px) {
   .ai-content { grid-template-columns: 1fr; gap: 40px; }
   .hero h1 { font-size: 48px; }
