@@ -24,17 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                entry.target.classList.add('active');
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Apply observer to elements
-    document.querySelectorAll('.feature-card, .ai-text, .ai-visual, .cta-card').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+    // Apply observer to all reveal elements
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .feature-card, .ai-text, .ai-visual, .cta-card').forEach(el => {
         observer.observe(el);
     });
 
@@ -310,9 +307,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Custom CSS for observed elements
     const style = document.createElement('style');
     style.textContent = `
-        .visible {
+        .feature-card, .ai-text, .ai-visual, .cta-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .active {
             opacity: 1 !important;
-            transform: translateY(0) !important;
+            transform: translate(0, 0) !important;
         }
     `;
     document.head.appendChild(style);
