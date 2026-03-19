@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://flowapp.com/</loc>
+    <loc>https://flowdaily.org/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://flowapp.com/flow.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://flowapp.com/ready.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://flowapp.com/terms.html</loc>
+    <loc>https://flowdaily.org/terms.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://flowapp.com/privacy.html</loc>
+    <loc>https://flowdaily.org/privacy.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://flowapp.com/refund.html</loc>
+    <loc>https://flowdaily.org/refund.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

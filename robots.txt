@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 
-# Update the Host and Sitemap values to match your actual deployment domain.
-Sitemap: https://flowapp.com/sitemap.xml
+# FlowDaily SEO Configuration
+Sitemap: https://flowdaily.org/sitemap.xml
+
