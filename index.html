@@ -91,11 +91,13 @@
         <a href="#jokes">Why Flow?</a>
         <a href="#habits">Habits</a>
         <a href="#pricing">Pricing</a>
-        <div id="auth-nav" style="display: flex; align-items: center; gap: 16px;">
+        <div id="auth-nav" style="display: flex; align-items: center; gap: 12px;">
+          <a href="https://github.com/N1k0Devv/flow/releases/download/flow/Flow.Setup.1.1.0.exe" class="btn btn-ghost hide-mobile" download style="padding: 8px 16px; font-size: 13px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;">Download</a>
           <button class="btn btn-ghost" id="login-nav-btn" style="padding: 8px 16px; font-size: 14px;">Sign In</button>
-          <a href="#pricing" class="btn btn-primary" style="padding: 8px 16px; font-size: 14px;">Get Flow</a>
+          <a href="#pricing" class="btn btn-primary btn-glow" style="padding: 10px 20px; font-size: 14px; border-radius: 12px; font-weight: 700;">Get Flow</a>
         </div>
         <div id="user-nav" style="display: none; align-items: center; gap: 16px;">
+          <a href="https://github.com/N1k0Devv/flow/releases/download/flow/Flow.Setup.1.1.0.exe" class="btn btn-ghost hide-mobile" download style="padding: 8px 16px; font-size: 13px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;">Download App</a>
           <span id="user-display"
             style="font-size: 13px; color: var(--text-muted); font-family: var(--font-mono);"></span>
           <button class="btn btn-ghost" id="logout-btn"
@@ -117,8 +119,8 @@
       </p>
       <div class="hero-btns animate-fade-in delay-2">
         <a href="https://github.com/N1k0Devv/flow/releases/download/flow/Flow.Setup.1.1.0.exe"
-          class="btn btn-primary btn-lg" download>Download Now</a>
-        <a href="#jokes" class="btn btn-ghost btn-lg">Why We Built This?</a>
+          class="btn btn-primary btn-lg btn-glow" download style="min-width: 200px;">Download Now</a>
+        <a href="#jokes" class="btn btn-ghost btn-lg" style="margin-left: 12px;">Why Flow?</a>
       </div>
 
       <div class="hero-preview animate-float">
@@ -428,9 +430,22 @@
       <button id="close-auth"
         style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 20px; z-index: 11;">✕</button>
       <div id="auth-form-container">
-        <h3 id="auth-title" style="font-size: 24px; margin-bottom: 8px;">Welcome Back</h3>
-        <p id="auth-subtitle" style="color: var(--text-muted); font-size: 14px; margin-bottom: 32px;">Please enter your
+        <p id="auth-subtitle" style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Please enter your
           details to continue.</p>
+
+        <!-- Social Login -->
+        <div style="margin-bottom: 24px;">
+          <button id="google-login-btn" class="btn btn-ghost" style="width: 100%; display: flex; gap: 12px; justify-content: center; padding: 14px; border-radius: 12px;">
+            <img src="https://www.google.com/favicon.ico" alt="Google" style="width: 18px; filter: grayscale(1) invert(1);">
+            Continue with Google
+          </button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">
+          <div style="flex: 1; height: 1px; background: var(--border-subtle); opacity: 0.5;"></div>
+          <span>or continue with email</span>
+          <div style="flex: 1; height: 1px; background: var(--border-subtle); opacity: 0.5;"></div>
+        </div>
 
         <form id="auth-form" style="display: flex; flex-direction: column; gap: 16px;">
           <div style="display: flex; flex-direction: column; gap: 8px;">

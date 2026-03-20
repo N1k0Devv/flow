@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | Productive</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <style>
+        .checkout-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 40px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+        }
+
+        .order-summary {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .plan-badge {
+            background: var(--accent-pulse);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        .order-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .feature-item span {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        /* Custom style for the Paddle frame */
+        .paddle-checkout-container {
+            background: rgba(255,255,255,0.02);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            min-height: 600px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #checkout-loader {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-surface);
+            z-index: 5;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+            .order-summary {
+                text-align: center;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="aura-orb orb-1"></div>
+    <div class="aura-orb orb-2"></div>
+    <div class="mesh-bg"></div>
+
+    <div class="checkout-container">
+        <div class="checkout-grid">
+            <!-- Left Side: Order Summary -->
+            <div class="order-summary">
+                <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                    ← Back to selection
+                </a>
+
+                <div>
+                    <div id="plan-type" class="plan-badge">PRODUCTIVE PRO</div>
+                    <h1 class="order-title">Complete your upgrade</h1>
+                    <p style="color: var(--text-muted); line-height: 1.6;">Unlock the full power of Flow and reach peak performance with zero friction.</p>
+                </div>
+
+                <ul class="feature-list">
+                    <li class="feature-item"><span>✓</span> Custom Focus Chimes</li>
+                    <li class="feature-item"><span>✓</span> Visual Performance Charts</li>
+                    <li class="feature-item"><span>✓</span> Notion OS Integration</li>
+                    <li class="feature-item"><span>✓</span> Multi-device Cloud Sync</li>
+                    <li class="feature-item"><span>✓</span> All Future Pro Updates</li>
+                </ul>
+
+                <div id="countdown-banner" style="margin-top: auto; padding: 20px; background: rgba(0,255,136,0.05); border: 1px dashed var(--accent-glow); border-radius: 20px; display: none;">
+                    <div style="font-size: 13px; color: var(--accent); font-weight: 700; margin-bottom: 4px;">7-DAY FREE TRIAL ACTIVE</div>
+                    <div style="font-size: 12px; color: var(--text-secondary); opacity: 0.8;">You won't be charged until your trial expires.</div>
+                </div>
+            </div>
+
+            <!-- Right Side: Secure Paddle Checkout -->
+            <div class="paddle-checkout-container">
+                <div id="checkout-loader">
+                    <div class="loader"></div>
+                    <p style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--text-muted);">INITIALIZING SECURE ENGINE...</p>
+                </div>
+                <div class="paddle-checkout-frame"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification-container"></div>
+
+    <!-- Supabase for identifying user -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const plan = urlParams.get('plan') || 'monthly';
+            const priceId = urlParams.get('priceId') || (plan === 'annual' ? 'pri_01km3sj8nbreym8m0zp4qx9rnn' : 'pri_01km3sfrvp1htyt0kb3tnjt1jv');
+            const emailParam = urlParams.get('email');
+            const userIdParam = urlParams.get('userId');
+            const tokenParam = urlParams.get('token');
+
+            // Update UI
+            document.getElementById('plan-type').innerText = `PRODUCTIVE PRO ${plan.toUpperCase()}`;
+            if (plan === 'annual') document.getElementById('plan-type').style.background = 'rgba(204, 136, 255, 0.15)';
+            if (plan === 'annual') document.getElementById('plan-type').style.color = '#cc88ff';
+
+            // Show free trial banner if appropriate
+            document.getElementById('countdown-banner').style.display = 'block';
+
+            // Paddle Configuration
+            if (tokenParam && tokenParam.startsWith('test_')) {
+                Paddle.Environment.set('sandbox');
+            } else {
+                Paddle.Environment.set('production');
+            }
+
+            Paddle.Initialize({ 
+                token: tokenParam || 'live_8530a6727826bbe9f96b781f6ac',
+                eventCallback: (event) => {
+                    console.log('[Paddle Event]', event.name, event.data || event);
+                    
+                    if (event.name && typeof event.name === 'string' && event.name.includes('error')) {
+                        const errorMsg = event.data?.detail || event.detail || 'Unknown check-out error';
+                        const errorCode = event.data?.error_code || 'N/A';
+                        console.error('[Paddle Error Detail]', errorMsg, 'Code:', errorCode);
+                        
+                        if (errorMsg.includes('transaction_checkout_not_enabled')) {
+                            alert("ACCOUNT UPDATE REQUIRED: Your Paddle account has not yet been enabled for live checkouts. This is common while in 'Review' status. Please use a Sandbox token for testing, or wait for Paddle's approval.");
+                        }
+                        
+                        // Show error toast or banner
+                        const notify = document.getElementById('notification-container');
+                        if (notify) {
+                            const div = document.createElement('div');
+                            div.className = 'notification error';
+                            div.innerHTML = `<strong>Error:</strong> ${errorMsg}`;
+                            notify.appendChild(div);
+                            setTimeout(() => div.remove(), 8000);
+                        }
+                    }
+
+                    if (event.name === 'checkout.completed') {
+                        if (window.electronAPI) {
+                            window.electronAPI.paddleSuccess(event);
+                        }
+                        window.location.href = 'index.html?status=success';
+                    }
+                    if (event.name === 'checkout.closed') {
+                        if (window.electronAPI) {
+                            window.electronAPI.paddleClosed();
+                        }
+                    }
+                }
+            });
+
+            // Trigger Overlay Checkout
+            try {
+                Paddle.Checkout.open({
+                    settings: {
+                        displayMode: 'overlay',
+                        theme: 'dark',
+                        locale: 'en'
+                    },
+                    items: [{ priceId, quantity: 1 }],
+                    customer: (emailParam && emailParam !== 'undefined' && emailParam !== 'null') ? { email: emailParam } : undefined,
+                    customData: (userIdParam && userIdParam !== 'undefined' && userIdParam !== 'null') ? { userId: userIdParam } : undefined
+                });
+            } catch (err) {
+                console.error('[Paddle] Open failed:', err);
+            }
+
+            // Hide loader after a delay
+            setTimeout(() => {
+                document.getElementById('checkout-loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('checkout-loader').remove(), 500);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
