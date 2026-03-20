@@ -77,6 +77,9 @@
   <div class="aura-orb orb-2"></div>
   <div class="mesh-bg"></div>
 
+  <!-- Notification System -->
+  <div id="notification-container"></div>
+
   <nav class="glass">
     <div class="container nav-content">
       <div class="logo">
@@ -414,9 +417,16 @@
   <div id="auth-modal" class="auth-modal"
     style="position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 9999; align-items: center; justify-content: center; padding: 20px;">
     <div
-      style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 40px; border-radius: 24px; width: 100%; max-width: 400px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+      class="auth-card"
+      style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 40px; border-radius: 24px; width: 100%; max-width: 400px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto;">
+      
+      <!-- Loading Overlay -->
+      <div id="auth-loading" class="loading-overlay">
+        <div class="loader"></div>
+      </div>
+
       <button id="close-auth"
-        style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 20px;">✕</button>
+        style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 20px; z-index: 11;">✕</button>
       <div id="auth-form-container">
         <h3 id="auth-title" style="font-size: 24px; margin-bottom: 8px;">Welcome Back</h3>
         <p id="auth-subtitle" style="color: var(--text-muted); font-size: 14px; margin-bottom: 32px;">Please enter your
