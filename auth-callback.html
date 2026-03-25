@@ -113,7 +113,7 @@
                 // We are on the live website, redirect to the home page with tokens
                 // The home page's script will handle the Supabase session
                 console.log("Website detected, returning to home...");
-                window.location.href = "index.html" + tokens;
+                window.location.href = "/" + tokens;
             }
         } else {
             document.querySelector('h1').innerText = "Session Not Found";
