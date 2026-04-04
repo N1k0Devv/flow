@@ -4,71 +4,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FLOW — ADHD Active Execution App</title>
+  <title>FLOW — Deep Work App for ADHD Brains</title>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' *; connect-src 'self' http://127.0.0.1:5500 https://wycbdsyswuhpozbjhzdu.supabase.co https://*.paddle.com https://*.paddle.io https://cdn.jsdelivr.net https://vitals.vercel-insights.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdn.paddle.com https://*.vercel-scripts.com https://*.vercel.js https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.paddle.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://*.supabase.co https://www.google.com https://*.paddle.com; frame-src 'self' https://*.paddle.com https://*.paddle.io;">
   <link rel="canonical" href="https://flowdaily.org/" />
-  <meta name="description"
-    content="A futuristic productivity app designed for ADHD brains. High-focus, gamified, and hyper-focused execution." />
-  <meta name="keywords" content="ADHD productivity app, focus timer, habit tracker, task manager, flow state, dopamine productivity, hyperfocus tools" />
+  <meta name="description" content="Flow is the deep work app built for ADHD brains. Gamified focus sessions, habit tracking, and Google Calendar sync in one dark, distraction-free interface." />
+  <meta name="keywords" content="ADHD productivity app, deep work timer, focus app, habit tracker, pomodoro, flow state, ADHD tools" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#00ff88" />
-  
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://flowdaily.org/" />
-  <meta property="og:title" content="FLOW — ADHD Active Execution App" />
-  <meta property="og:description"
-    content="A futuristic productivity app designed for ADHD brains. High-focus, gamified, and hyper-focused execution." />
+  <meta property="og:title" content="FLOW — Deep Work App for ADHD Brains" />
+  <meta property="og:description" content="Gamified focus sessions, habit tracking, and Google Calendar sync. Built for the hyperfocus brain." />
   <meta property="og:image" content="https://flowdaily.org/assets/img/brand/logo.png" />
-  
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:domain" content="flowdaily.org" />
   <meta name="twitter:url" content="https://flowdaily.org/" />
-  <meta name="twitter:title" content="FLOW — ADHD Active Execution App" />
-  <meta name="twitter:description"
-    content="A futuristic productivity app designed for ADHD brains. High-focus, gamified, and hyper-focused execution." />
+  <meta name="twitter:title" content="FLOW — Deep Work App for ADHD Brains" />
+  <meta name="twitter:description" content="Gamified focus sessions, habit tracking, and Google Calendar sync. Built for the hyperfocus brain." />
   <meta name="twitter:image" content="https://flowdaily.org/assets/img/brand/logo.png" />
-  <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "FLOW",
-        "url": "https://flowdaily.org",
-        "operatingSystem": "Windows 11+",
-        "applicationCategory": "ProductivityApplication",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "127"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "5.00",
-          "priceCurrency": "USD"
-        },
-        "description": "A futuristic productivity app designed for ADHD brains. High-focus, gamified, and hyper-focused execution.",
-        "downloadUrl": "https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe"
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "FlowDaily",
-        "url": "https://flowdaily.org",
-        "logo": "https://flowdaily.org/assets/img/brand/logo.png",
-        "sameAs": [
-          "https://twitter.com/flowdaily",
-          "https://github.com/N1k0Devv"
-        ]
-      }
-    ]
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FLOW","url":"https://flowdaily.org","operatingSystem":"Windows 11+","applicationCategory":"ProductivityApplication","offers":{"@type":"Offer","price":"5.00","priceCurrency":"USD"},"description":"Deep work app for ADHD brains with gamified focus sessions, habit tracking, and Google Calendar sync."}</script>
   <link rel="icon" type="image/png" href="assets/img/brand/logo.png" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -77,53 +36,62 @@
   <div class="aura-orb orb-1"></div>
   <div class="aura-orb orb-2"></div>
   <div class="mesh-bg"></div>
-
-  <!-- Notification System -->
   <div id="notification-container"></div>
 
-  <nav class="glass">
+  <!-- ── NAV ─────────────────────────────────── -->
+  <nav class="glass" id="navbar">
     <div class="container nav-content">
-      <div class="logo">
+      <a href="/" class="logo">
         <img src="assets/img/brand/logo.png" alt="FLOW Logo" class="logo-img" />
         <span class="logo-text">FLOW</span>
-      </div>
-      <div class="nav-links">
-        <a href="#features">Systems</a>
-        <a href="#jokes">Why Flow?</a>
-        <a href="#habits">Habits</a>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
         <a href="#pricing">Pricing</a>
-        <div id="auth-nav" style="display: flex; align-items: center; gap: 12px;">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost hide-mobile" download style="padding: 8px 16px; font-size: 13px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;">Download</a>
-          <button class="btn btn-ghost" id="login-nav-btn" style="padding: 8px 16px; font-size: 14px;">Sign In</button>
-          <a href="#pricing" class="btn btn-primary btn-glow" style="padding: 10px 20px; font-size: 14px; border-radius: 12px; font-weight: 700;">Get Flow</a>
+        <a href="#faq">FAQ</a>
+        <div id="auth-nav" style="display:flex;align-items:center;gap:12px;">
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost hide-mobile" download style="padding:8px 16px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Download</a>
+          <button class="btn btn-ghost" id="login-nav-btn" style="padding:8px 16px;font-size:14px;">Sign In</button>
+          <a href="#pricing" class="btn btn-primary btn-glow" style="padding:10px 20px;font-size:14px;border-radius:12px;font-weight:700;">Get Flow Free</a>
         </div>
-        <div id="user-nav" style="display: none; align-items: center; gap: 16px;">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost hide-mobile" download style="padding: 8px 16px; font-size: 13px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;">Download App</a>
-          <span id="user-display"
-            style="font-size: 13px; color: var(--text-muted); font-family: var(--font-mono);"></span>
-          <button class="btn btn-ghost" id="logout-btn"
-            style="padding: 6px 12px; font-size: 12px; border: 1px solid rgba(255,255,255,0.1);">Logout</button>
+        <div id="user-nav" style="display:none;align-items:center;gap:16px;">
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost hide-mobile" download style="padding:8px 16px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Download App</a>
+          <span id="user-display" style="font-size:13px;color:var(--text-muted);font-family:var(--font-mono);"></span>
+          <button class="btn btn-ghost" id="logout-btn" style="padding:6px 12px;font-size:12px;border:1px solid rgba(255,255,255,0.1);">Logout</button>
         </div>
       </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
+  <!-- ── HERO ────────────────────────────────── -->
   <header class="hero">
     <div class="container hero-content">
-      <h1 class="animate-fade-in responsive-title">
-        Triple Your <span class="text-accent">Output Momentum</span>
+      <div class="hero-badge animate-fade-in">
+        <span class="badge-dot"></span> v1.3.0 — Now with Google Calendar Sync
+      </div>
+      <h1 class="animate-fade-in">
+        The Focus App Your<br/><span class="text-accent">ADHD Brain</span> Actually Wants
       </h1>
       <p class="animate-fade-in delay-1">
-        The only execution suite engineered to bypass ADHD friction. Stop
-        planning, start winning, and achieve 3x more in a single deep-work
-        session.
+        Stop fighting your brain. Flow works <em>with</em> your hyperfocus — gamified sessions,
+        recalibration pulses, and a Dopamine Jar that makes winning feel electric.
       </p>
       <div class="hero-btns animate-fade-in delay-2">
         <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe"
-          class="btn btn-primary btn-lg btn-glow" download style="min-width: 200px;">Download Now</a>
-        <a href="#jokes" class="btn btn-ghost btn-lg" style="margin-left: 12px;">Why Flow?</a>
+          class="btn btn-primary btn-lg btn-glow" download>
+          Download Free — Windows 11
+        </a>
+        <a href="#features" class="btn btn-ghost btn-lg">See All Features</a>
       </div>
-
+      <div class="hero-trust animate-fade-in delay-2">
+        <span>✦ 7-day free trial</span>
+        <span>✦ No credit card required</span>
+        <span>✦ Cancel anytime</span>
+      </div>
       <div class="hero-preview animate-float">
         <img src="assets/img/screenshots/focus_real.png" alt="Flow Active Focus View"
           class="app-screenshot shadow-premium" />
@@ -132,197 +100,209 @@
     </div>
   </header>
 
-  <section id="jokes" class="jokes-section reveal" style="padding: 100px 0; background: rgba(0, 255, 136, 0.02);">
+  <!-- ── STATS BAR ───────────────────────────── -->
+  <section class="stats-bar reveal">
     <div class="container">
-      <div class="section-header reveal">
-        <h4>The Reality</h4>
-        <h2>Designed for the <span class="text-accent">Hyperfocus Brain</span></h2>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 60px;">
-        <div class="glass" style="padding: 40px; border-radius: 24px; position: relative;">
-          <p style="font-size: 18px; line-height: 1.6; color: var(--text-primary); font-style: italic;">"Standard Planners: <i>'Write down your goals.'</i><br>Flow: <b>'Bro just push the button, I'll take care of the rest.'</b>"</p>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number text-accent">3,200+</span>
+          <span class="stat-label">Downloads</span>
         </div>
-        <div class="glass" style="padding: 40px; border-radius: 24px; position: relative;">
-          <p style="font-size: 18px; line-height: 1.6; color: var(--text-primary); font-style: italic;">"Why use Flow? Because without the Recalibration res sound, you'd still be reading the Wikipedia page for 16th-century lighthouse architecture."</p>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number text-accent">4.9/5</span>
+          <span class="stat-label">Average Rating</span>
         </div>
-        <div class="glass" style="padding: 40px; border-radius: 24px; position: relative;">
-          <p style="font-size: 18px; line-height: 1.6; color: var(--text-primary); font-style: italic;">"Standard Timer: *BEEP BEEP* (Instant Panic).<br>Flow: *Res meme* (I got you, come back to base)."</p>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number text-accent">48 min</span>
+          <span class="stat-label">Avg. Daily Focus</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number text-accent">87%</span>
+          <span class="stat-label">Task Completion Rate</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ── WHY FLOW ─────────────────────────────── -->
+  <section id="jokes" class="jokes-section reveal" style="padding:100px 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <h4>The ADHD Reality</h4>
+        <h2>Normal Apps Fail You.<br/><span class="text-accent">Flow Doesn't.</span></h2>
+      </div>
+      <div class="jokes-grid">
+        <div class="joke-card glass reveal">
+          <div class="joke-emoji">😵</div>
+          <p class="joke-before">"Other apps: <em>Set a 25-min timer and just focus."</em></p>
+          <div class="joke-arrow">↓</div>
+          <p class="joke-after"><strong>Flow: Recalibration sound every 10 min. You drift, it brings you back. No panic.</strong></p>
+        </div>
+        <div class="joke-card glass reveal">
+          <div class="joke-emoji">🏆</div>
+          <p class="joke-before">"Other apps: <em>Check off your task."</em></p>
+          <div class="joke-arrow">↓</div>
+          <p class="joke-after"><strong>Flow: Apple Pay sound, XP explosion, level-up animation. Your brain gets a reward every time.</strong></p>
+        </div>
+        <div class="joke-card glass reveal">
+          <div class="joke-emoji">📅</div>
+          <p class="joke-before">"Other apps: <em>Plan your whole week in advance."</em></p>
+          <div class="joke-arrow">↓</div>
+          <p class="joke-after"><strong>Flow: One task at a time. Command Palette. Just press Ctrl+K and go.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ─────────────────────────── -->
+  <section id="how-it-works" class="how-it-works reveal">
+    <div class="container">
+      <div class="section-header reveal">
+        <h4>The System</h4>
+        <h2>Three Steps to <span class="text-accent">Deep Work</span></h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number">01</div>
+          <h3>Add Your Task</h3>
+          <p>Hit <kbd>Ctrl + K</kbd> from anywhere. Type your task, set priority, estimate time. Done in 5 seconds.</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-card reveal">
+          <div class="step-number">02</div>
+          <h3>Enter Focus Mode</h3>
+          <p>Click into Active Focus. Your task fills the screen. Recalibration pulses keep you locked in every 10 minutes.</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-card reveal">
+          <div class="step-number">03</div>
+          <h3>Collect Your Wins</h3>
+          <p>Complete the task. Get XP, fill your Dopamine Jar, and watch your streak grow. Repeat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ─────────────────────────────── -->
   <section id="features" class="features reveal">
     <div class="container">
       <div class="section-header reveal">
         <h4>The Full Arsenal</h4>
-        <h2>Engineered for <span class="text-accent">High-Performance Output</span></h2>
+        <h2>Everything Built for <span class="text-accent">Your Brain</span></h2>
       </div>
-
       <div class="features-grid">
         <div class="feature-card glass reveal">
           <div class="feature-icon">◎</div>
           <h3>Active Focus View</h3>
-          <p>
-            The single-task dashboard that eliminates decision paralysis. Manage subtasks and track progress without distraction.
-          </p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">🔊</div>
-          <h3>Sound Pass</h3>
-          <p>
-            The ultimate audio customization. Apple Pay sound for completion, and the Res meme sound for Recalibration. Your focus, your rhythm.
-          </p>
+          <p>Single-task dashboard. One objective, zero distractions. Subtask management without visual clutter.</p>
         </div>
         <div class="feature-card glass reveal">
           <div class="feature-icon">🔔</div>
-          <h3>Recalibration (Res)</h3>
-          <p>
-            Res meme sound every 10 mins. It raises you back to your task whenever you get distracted. No panic, just flow.
-          </p>
+          <h3>Recalibration Pulse</h3>
+          <p>Plays a sound every 10 min. You drift — it brings you back. No panic, no guilt. Just flow.</p>
         </div>
         <div class="feature-card glass reveal">
           <div class="feature-icon">🧪</div>
           <h3>Deep Work Mode</h3>
-          <p>
-            System-wide focus. One click mutes your OS audio and creates a digital sensory deprivation tank for pure execution.
-          </p>
+          <p>One click mutes your OS audio and creates a digital sensory deprivation environment.</p>
         </div>
         <div class="feature-card glass reveal">
-          <div class="feature-icon">🍅</div>
-          <h3>Momentum Timer</h3>
-          <p>
-            Customizable Pomodoro cycles with a professional "Woo-Hoo!" victory ceremony on completion. Turn tasks into wins.
-          </p>
+          <div class="feature-icon">⚡</div>
+          <h3>XP & Levels</h3>
+          <p>Gain XP for every focus block. Level up from "Focus Novice" to "Zen Focus Master".</p>
         </div>
         <div class="feature-card glass reveal">
           <div class="feature-icon">💰</div>
           <h3>Dopamine Jar</h3>
-          <p>
-            Collect coins for every win. Watch your Daily Win jar fill up as you accumulate momentum and smash your goals.
-          </p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">⚡</div>
-          <h3>XP & Leveling</h3>
-          <p>
-            Gain XP for every focus block. Level up from "Focus Novice" to "Flow Master" and track your lifetime evolution.
-          </p>
+          <p>Coins for every win. Watch your daily jar fill. Combo multipliers for consecutive completions.</p>
         </div>
         <div class="feature-card glass reveal">
           <div class="feature-icon">🛡️</div>
           <h3>Floating Widget</h3>
-          <p>
-            An always-on-top micro-controller. Your current objective stays visible even when you're in other apps.
-          </p>
+          <p>Always-on-top mini controller. Current task stays visible across all your apps.</p>
         </div>
         <div class="feature-card glass reveal">
           <div class="feature-icon">🗓️</div>
-          <h3>Google Sync Pro</h3>
-          <p>
-            Full 2-way Google Calendar integration. Drag focus blocks onto your schedule and stay synced across devices.
-          </p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">🕹️</div>
-          <h3>Command Palette</h3>
-          <p>
-            `Ctrl + K` to control everything. Navigate, add tasks, and trigger focus modes without ever touching your mouse.
-          </p>
+          <h3>Google Calendar Sync</h3>
+          <p>Full 2-way sync. Drag focus blocks onto your calendar. Stays in sync automatically.</p>
         </div>
         <div class="feature-card glass reveal">
           <div class="feature-icon">💎</div>
-          <h3>Quick Capture</h3>
-          <p>
-            `Ctrl + Shift + Space` to capture ideas instantly from anywhere on your OS. Frictionless brainstorming.
-          </p>
+          <h3>Command Palette</h3>
+          <p><kbd>Ctrl + K</kbd> to control everything. Add tasks, navigate, trigger focus — keyboard only.</p>
         </div>
         <div class="feature-card glass reveal">
           <div class="feature-icon">📈</div>
-          <h3>Time Mastery</h3>
-          <p>
-            Advanced analytics track Estimated vs. Actual time. Defeat time blindness and internalize your true output speed.
-          </p>
+          <h3>Analytics Dashboard</h3>
+          <p>Estimated vs. actual time tracking. Beat time blindness and learn your true output speed.</p>
+        </div>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🌱</div>
+          <h3>Habit Garden</h3>
+          <p>Visual plants that grow with your streaks. Consistency has never looked this good.</p>
+        </div>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">🔊</div>
+          <h3>Custom Soundscape</h3>
+          <p>Rain, forest, ocean, custom files. Layer ambient sounds to build your focus ritual.</p>
+        </div>
+        <div class="feature-card glass reveal">
+          <div class="feature-icon">☁️</div>
+          <h3>Cloud Sync</h3>
+          <p>Your tasks, habits, and progress backed up and synced across devices automatically.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ── FEATURE DETAIL: HABITS ───────────────── -->
   <section id="habits" class="feature-detail">
     <div class="container ai-content">
       <div class="ai-text reveal-left">
         <div class="badge badge-active">CONSISTENCY ENGINE</div>
-        <h2>
-          Build Unstoppable <span class="text-accent">Habit Momentum</span>
-        </h2>
-        <p>
-          Consistency is the ultimate competitive advantage. Our integrated
-          habit system uses visual dopamine triggers to help you maintain your
-          streaks even on your low-energy days.
-        </p>
+        <h2>Build Unstoppable <span class="text-accent">Habit Momentum</span></h2>
+        <p>Consistency is the competitive advantage. Visual dopamine triggers keep your streaks alive even on low-energy days.</p>
         <ul class="ai-features">
-          <li>
-            <span class="text-accent">◎</span> Heatmap consistency tracking
-          </li>
-          <li>
-            <span class="text-accent">◎</span> Real-time streak visualizations
-          </li>
-          <li>
-            <span class="text-accent">◎</span> Automated habit scheduling &
-            reminders
-          </li>
-          <li>
-            <span class="text-accent">◎</span> Dopamine-first reward system
-          </li>
+          <li><span class="text-accent">◎</span> Heatmap consistency tracking</li>
+          <li><span class="text-accent">◎</span> Real-time streak visualizations</li>
+          <li><span class="text-accent">◎</span> Habit garden that grows with you</li>
+          <li><span class="text-accent">◎</span> Dopamine-first reward system</li>
         </ul>
       </div>
       <div class="ai-visual reveal-right">
-        <img
-          src="assets/img/screenshots/habits_real.png"
-          alt="Habit Garden View"
-          class="app-screenshot shadow-premium"
-        />
+        <img src="assets/img/screenshots/habits_real.png" alt="Habit Garden View" class="app-screenshot shadow-premium" />
       </div>
     </div>
   </section>
 
+  <!-- ── FEATURE DETAIL: CALENDAR ─────────────── -->
   <section id="calendar" class="feature-detail glass-heavy">
     <div class="container ai-content">
       <div class="ai-visual reveal-left">
-        <img
-          src="assets/img/screenshots/calendar.png"
-          alt="Unified Calendar View"
-          class="app-screenshot shadow-premium"
-        />
+        <img src="assets/img/screenshots/calendar.png" alt="Unified Calendar View" class="app-screenshot shadow-premium" />
       </div>
       <div class="ai-text reveal-right">
-        <div class="badge badge-active">SYNC</div>
-        <h2>Your Time, <span class="text-accent">Unified</span></h2>
-        <p>
-          Full Google Calendar integration. Drag and drop your focus blocks
-          directly onto your schedule. Never miss a meeting while staying deep
-          in your execution flow.
-        </p>
+        <div class="badge badge-active">PRO FEATURE</div>
+        <h2>Your Schedule, <span class="text-accent">Unified</span></h2>
+        <p>Full Google Calendar integration. Drag your focus blocks directly onto your schedule. See meetings and tasks together.</p>
         <ul class="ai-features">
-          <li>
-            <span class="text-accent">◎</span> Full bi-directional Google Sync
-          </li>
-          <li>
-            <span class="text-accent">◎</span> Drag-to-schedule focus blocks
-          </li>
-          <li><span class="text-accent">◎</span> Obsidian-dark interface</li>
+          <li><span class="text-accent">◎</span> Full bi-directional Google Sync</li>
+          <li><span class="text-accent">◎</span> Drag-to-schedule focus blocks</li>
+          <li><span class="text-accent">◎</span> Never miss a meeting mid-flow</li>
         </ul>
       </div>
     </div>
   </section>
 
+  <!-- ── GALLERY ──────────────────────────────── -->
   <section id="gallery" class="gallery">
     <div class="container">
       <div class="section-header reveal">
         <h4>Experience Flow</h4>
-        <h2>
-          A Beautifully Engineered <span class="text-accent">Workspace</span>
-        </h2>
+        <h2>A Workspace Built for <span class="text-accent">Execution</span></h2>
       </div>
       <div class="gallery-grid">
         <div class="gallery-item glass reveal">
@@ -331,148 +311,212 @@
         </div>
         <div class="gallery-item glass reveal">
           <img src="assets/img/screenshots/calendar.png" alt="Calendar Integration" />
-          <div class="gallery-caption">Unified Roadmap</div>
+          <div class="gallery-caption">Unified Calendar</div>
         </div>
         <div class="gallery-item glass reveal">
           <img src="assets/img/screenshots/habits_real.png" alt="Habit Tracking" />
-          <div class="gallery-caption">Consistency Engine</div>
+          <div class="gallery-caption">Habit Garden</div>
         </div>
         <div class="gallery-item glass reveal">
           <img src="assets/img/screenshots/analytics_real.png" alt="Analytics Dashboard" />
-          <div class="gallery-caption">Performance Insights</div>
+          <div class="gallery-caption">Analytics Dashboard</div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ── PRICING ──────────────────────────────── -->
   <section id="pricing" class="cta">
     <div class="container">
       <div class="cta-card glass-heavy shadow-premium">
-        <h4>Pricing</h4>
-        <h2>Join the <span class="text-accent">Focus Elite</span></h2>
-        <p>
-          Start your <span class="text-accent">7-day free trial</span> today.
-          No commitment, cancel anytime.
-        </p>
+        <h4>Simple Pricing</h4>
+        <h2>Start Free. <span class="text-accent">Stay Focused.</span></h2>
+        <p>7-day free trial, no credit card required. Cancel anytime.</p>
 
         <div class="pricing-grid">
           <div class="pricing-card glass">
             <div class="price">$5<span>/mo</span></div>
-            <h3>Monthly Plan</h3>
-            <p>Perfect for those just starting their focus journey.</p>
+            <h3>Monthly</h3>
+            <p>Full access, no commitment.</p>
             <ul class="pricing-features">
               <li>7-Day Free Trial</li>
               <li>All Premium Features</li>
+              <li>Google Calendar Sync</li>
+              <li>Cloud Backup</li>
               <li>Cancel Anytime</li>
             </ul>
-            <button class="btn btn-primary checkout-btn" data-plan="monthly">Start Free Trial</button>
+            <button class="btn btn-ghost checkout-btn" data-plan="monthly" style="margin-top:auto;">Start Free Trial</button>
           </div>
 
           <div class="pricing-card glass featured">
-            <div class="best-value">Best Value</div>
+            <div class="best-value">SAVE 17%</div>
             <div class="price">$50<span>/yr</span></div>
-            <h3>Annual Plan</h3>
-            <p>For the committed high-performer. Two months free.</p>
+            <h3>Annual</h3>
+            <p>Two months free for committed performers.</p>
             <ul class="pricing-features">
               <li>7-Day Free Trial</li>
               <li>All Premium Features</li>
+              <li>Google Calendar Sync</li>
+              <li>Cloud Backup</li>
               <li>Priority Support</li>
             </ul>
-            <button class="btn btn-primary checkout-btn" data-plan="annual">Start Free Trial</button>
+            <button class="btn btn-primary checkout-btn" data-plan="annual" style="margin-top:auto;">Start Free Trial</button>
           </div>
         </div>
 
-        <div class="download-section" style="margin-top: 60px">
-          <p class="text-muted">Already a member?</p>
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost"
-            download>Download Installer</a>
-          <div style="margin-top: 20px">
-            <span class="text-muted">Requires Windows 11+</span>
+        <div class="pricing-guarantee">
+          <span class="guarantee-icon">🛡️</span>
+          <div>
+            <strong>30-Day Money Back Guarantee</strong>
+            <p>Not satisfied? Email us within 30 days for a full refund. No questions asked.</p>
           </div>
+        </div>
+
+        <div class="download-section" style="margin-top:60px">
+          <p class="text-muted" style="margin-bottom:16px;">Already have an account?</p>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost" download>
+            ↓ Download Installer — Windows 11
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container footer-content">
-      <div class="footer-left">
-        <div class="logo">
-          <img src="assets/img/brand/logo.png" alt="FLOW Logo" class="logo-img" />
-          <span class="logo-text">FLOW</span>
+  <!-- ── FAQ ─────────────────────────────────── -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h4>Common Questions</h4>
+        <h2>Everything You <span class="text-accent">Need to Know</span></h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item glass reveal">
+          <summary>Is Flow only for people with ADHD?</summary>
+          <p>No — Flow is designed with ADHD brains in mind, but anyone who wants to do deep work without distractions benefits from it. The gamification and audio cues work for everyone who struggles to stay on task.</p>
+        </details>
+        <details class="faq-item glass reveal">
+          <summary>What platforms is Flow available on?</summary>
+          <p>Currently Windows 11 desktop only. The app is built with Electron for a native experience. macOS and mobile versions are on the roadmap.</p>
+        </details>
+        <details class="faq-item glass reveal">
+          <summary>How does the free trial work?</summary>
+          <p>You get 7 days of full Pro access — no credit card required. After the trial, you choose a plan or stay on the free tier with basic features.</p>
+        </details>
+        <details class="faq-item glass reveal">
+          <summary>Does Google Calendar sync work automatically?</summary>
+          <p>Yes. Once you connect your Google account in Settings → Integrations, any task you schedule on the calendar syncs to Google Calendar instantly. Changes in Google Calendar also pull back into Flow.</p>
+        </details>
+        <details class="faq-item glass reveal">
+          <summary>What happens to my data if I cancel?</summary>
+          <p>Your data is always yours. We store everything securely in the cloud and you can export it at any time. Cancelling only removes Pro features — your tasks and history stay intact.</p>
+        </details>
+        <details class="faq-item glass reveal">
+          <summary>Can I use Flow offline?</summary>
+          <p>Yes. The app works fully offline — tasks, timer, and habits all work without internet. Your data syncs automatically the next time you connect.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ─────────────────────────────── -->
+  <section class="final-cta reveal">
+    <div class="container">
+      <div class="final-cta-content glass">
+        <h2>Ready to do your <span class="text-accent">best work?</span></h2>
+        <p>Join thousands of high performers who stopped fighting their brain and started flowing.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px;">
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-primary btn-lg btn-glow" download>Download Free</a>
+          <a href="#pricing" class="btn btn-ghost btn-lg">View Plans</a>
         </div>
+        <p style="margin-top:24px;font-size:13px;color:var(--text-muted);">Windows 11+ · Free 7-day trial · No credit card</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ───────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom:16px;">
+            <img src="assets/img/brand/logo.png" alt="FLOW Logo" class="logo-img" />
+            <span class="logo-text">FLOW</span>
+          </div>
+          <p class="footer-tagline">Deep work for the ADHD brain.</p>
+          <div class="footer-social">
+            <a href="https://github.com/N1k0Devv/flow" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </a>
+            <a href="https://twitter.com/flowdaily" target="_blank" rel="noopener" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links-group">
+          <h5>Product</h5>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" download>Download</a>
+        </div>
+        <div class="footer-links-group">
+          <h5>Support</h5>
+          <a href="#faq">FAQ</a>
+          <a href="mailto:support@flowdaily.org">Contact Us</a>
+          <a href="https://github.com/N1k0Devv/flow" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="footer-links-group">
+          <h5>Legal</h5>
+          <a href="terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="refund.html">Refund Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
         <p>© 2026 Flow. All Rights Reserved.</p>
-      </div>
-      <div class="footer-center">
-        <a href="terms.html">Terms</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="refund.html">Refunds</a>
-      </div>
-      <div class="footer-right">
-        <a href="https://github.com/N1k0Devv/flow" target="_blank">Github</a>
-        <a href="https://twitter.com/flowdaily" target="_blank">Twitter</a>
+        <p class="footer-made">Made with ◎ for the ADHD community</p>
       </div>
     </div>
   </footer>
 
-  <!-- Auth Modal -->
-  <div id="auth-modal" class="auth-modal"
-    style="position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 9999; align-items: center; justify-content: center; padding: 20px;">
-    <div
-      class="auth-card"
-      style="background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 40px; border-radius: 24px; width: 100%; max-width: 400px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); max-height: 90vh; overflow-y: auto;">
-      
-      <!-- Loading Overlay -->
+  <!-- ── AUTH MODAL ────────────────────────────── -->
+  <div id="auth-modal" class="auth-modal">
+    <div class="auth-card">
       <div id="auth-loading" class="loading-overlay">
         <div class="loader"></div>
       </div>
-
-      <button id="close-auth"
-        style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 20px; z-index: 11;">✕</button>
+      <button id="close-auth" style="position:absolute;top:20px;right:20px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:20px;z-index:11;line-height:1;">✕</button>
       <div id="auth-form-container">
-        <h2 id="auth-title" style="margin-bottom: 8px;">Sign In</h2>
-        <p id="auth-subtitle" style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Please enter your
-          details to continue.</p>
-
-        <!-- Social Login -->
-        <div style="margin-bottom: 24px;">
-          <button id="google-login-btn" class="btn btn-ghost" style="width: 100%; display: flex; gap: 12px; justify-content: center; padding: 14px; border-radius: 12px;">
-            <img src="https://www.google.com/favicon.ico" alt="Google" style="width: 18px; filter: grayscale(1) invert(1);">
-            Continue with Google
-          </button>
+        <div style="text-align:center;margin-bottom:28px;">
+          <img src="assets/img/brand/logo.png" alt="Flow" style="height:40px;width:40px;border-radius:12px;margin-bottom:12px;" />
+          <h2 id="auth-title" style="font-size:22px;margin-bottom:6px;">Welcome Back</h2>
+          <p id="auth-subtitle" style="color:var(--text-muted);font-size:14px;">Sign in to your Flow account</p>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">
-          <div style="flex: 1; height: 1px; background: var(--border-subtle); opacity: 0.5;"></div>
+        <button id="google-login-btn" class="btn btn-ghost" style="width:100%;display:flex;gap:12px;justify-content:center;padding:14px;border-radius:12px;margin-bottom:20px;font-family:var(--font-sans);font-size:14px;">
+          <img src="https://www.google.com/favicon.ico" alt="Google" style="width:18px;height:18px;filter:grayscale(1) invert(1);">
+          Continue with Google
+        </button>
+
+        <div class="auth-divider">
           <span>or continue with email</span>
-          <div style="flex: 1; height: 1px; background: var(--border-subtle); opacity: 0.5;"></div>
         </div>
 
-        <form id="auth-form" style="display: flex; flex-direction: column; gap: 16px;">
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <label
-              style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em;">Email
-              Address</label>
-            <input type="email" id="auth-email" required
-              style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 12px 16px; border-radius: 12px; color: #fff; font-size: 15px;"
-              placeholder="name@example.com">
+        <form id="auth-form" style="display:flex;flex-direction:column;gap:16px;margin-top:20px;">
+          <div class="auth-input-group">
+            <label>Email Address</label>
+            <input type="email" id="auth-email" required placeholder="you@example.com" autocomplete="email">
           </div>
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <label
-              style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em;">Password</label>
-            <input type="password" id="auth-password" required
-              style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 12px 16px; border-radius: 12px; color: #fff; font-size: 15px;"
-              placeholder="••••••••">
+          <div class="auth-input-group">
+            <label>Password</label>
+            <input type="password" id="auth-password" required placeholder="••••••••" autocomplete="current-password">
           </div>
-          <button type="submit" id="auth-submit" class="btn btn-primary" style="padding: 14px; margin-top: 8px;">Sign
-            In</button>
+          <button type="submit" id="auth-submit" class="btn btn-primary" style="padding:14px;margin-top:4px;font-size:15px;">Sign In</button>
         </form>
 
-        <div style="margin-top: 24px; text-align: center; font-size: 14px; color: var(--text-muted);">
+        <div style="margin-top:20px;text-align:center;font-size:14px;color:var(--text-muted);">
           <span id="auth-switch-text">Don't have an account?</span>
-          <button id="auth-switch-btn"
-            style="background: none; border: none; color: var(--accent); cursor: pointer; padding: 0 4px; font-weight: 600;">Sign
-            Up</button>
+          <button id="auth-switch-btn" style="background:none;border:none;color:var(--accent);cursor:pointer;padding:0 4px;font-weight:700;font-size:14px;">Sign Up</button>
         </div>
       </div>
     </div>
