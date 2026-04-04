@@ -1,4 +1,4 @@
-// Productive Landing Page Interactions
+// Flow Landing Page Interactions
 
 document.addEventListener('DOMContentLoaded', () => {
     // Navigation bar background transition on scroll
@@ -33,6 +33,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply observer to all reveal elements
     document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .feature-card, .ai-text, .ai-visual, .cta-card').forEach(el => {
         observer.observe(el);
+    });
+
+    // Mobile hamburger menu toggle
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger?.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('mobile-open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+    // Close mobile menu when a link is clicked
+    navLinks?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('mobile-open');
+            hamburger?.classList.remove('open');
+        });
     });
 
     // ── Notification System ────────────────────────
@@ -201,11 +217,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const googleLoginBtn = document.getElementById('google-login-btn');
     googleLoginBtn?.addEventListener('click', async () => {
         try {
+            // Use explicit production URL in production, dynamic URL in development
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const baseUrl = isLocal ? window.location.origin : 'https://flowdaily.org';
+            const redirectTo = `${baseUrl}/auth-callback.html`;
+
             const { error } = await supabaseClient.auth.signInWithOAuth({
                 provider: 'google',
-                options: {
-                    redirectTo: new URL('auth-callback.html', window.location.href).href.split('#')[0].split('?')[0]
-                }
+                options: { redirectTo }
             });
             if (error) throw error;
         } catch (error) {
@@ -235,14 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (emailParam) authEmail.value = emailParam;
         authModal.classList.add('active');
         setAuthMode(true);
-    }
-
-    function openCustomerPortal() {
-        const targetEmail = emailParam || (currentUser ? currentUser.email : '');
-        if (typeof Paddle !== 'undefined') {
-            console.log('[Website] Opening customer portal for:', targetEmail);
-            window.location.href = `https://billing.paddle.com/checkout/customer-portal?email=${encodeURIComponent(targetEmail || '')}`;
-        }
     }
 
     function updateUI() {
@@ -362,8 +373,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000); // Small delay to ensure everything is ready
         }
     }
-
-    // (openCustomerPortal is defined above now)
 
     // Custom CSS for observed elements
     const style = document.createElement('style');
