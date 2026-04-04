@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Checkout | Productive</title>
+    <title>Secure Checkout | Flow</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
@@ -124,7 +124,7 @@
                 </a>
 
                 <div>
-                    <div id="plan-type" class="plan-badge">PRODUCTIVE PRO</div>
+                    <div id="plan-type" class="plan-badge">FLOW PRO</div>
                     <h1 class="order-title">Complete your upgrade</h1>
                     <p style="color: var(--text-muted); line-height: 1.6;">Unlock the full power of Flow and reach peak performance with zero friction.</p>
                 </div>
@@ -168,7 +168,7 @@
             const tokenParam = urlParams.get('token');
 
             // Update UI
-            document.getElementById('plan-type').innerText = `PRODUCTIVE PRO ${plan.toUpperCase()}`;
+            document.getElementById('plan-type').innerText = `FLOW PRO ${plan.toUpperCase()}`;
             if (plan === 'annual') document.getElementById('plan-type').style.background = 'rgba(204, 136, 255, 0.15)';
             if (plan === 'annual') document.getElementById('plan-type').style.color = '#cc88ff';
 
