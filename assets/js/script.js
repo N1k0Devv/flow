@@ -1,4 +1,4 @@
-// Productive Landing Page Interactions
+// Flow Landing Page Interactions
 
 document.addEventListener('DOMContentLoaded', () => {
     // Navigation bar background transition on scroll
@@ -35,6 +35,22 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
+    // Mobile hamburger menu toggle
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger?.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('mobile-open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+    // Close mobile menu when a link is clicked
+    navLinks?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('mobile-open');
+            hamburger?.classList.remove('open');
+        });
+    });
+
     // ── Notification System ────────────────────────
     const notificationContainer = document.getElementById('notification-container');
 
@@ -67,11 +83,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentUser = null;
 
+    // Check current session on startup AS EARLY AS POSSIBLE
+    console.log('[Auth] Checking initial session...');
+    
+    // Explicitly handle hash fragment for some browsers
+    if (window.location.hash.includes('access_token')) {
+        console.log('[Auth] Access token detected in fragment.');
+    }
+
+    supabaseClient.auth.onAuthStateChange((event, session) => {
+        console.log('[Auth] State change event:', event);
+        const prevUser = currentUser;
+        currentUser = session?.user || null;
+        updateUI();
+        
+        if (currentUser && !prevUser) {
+            showNotification(`Welcome back, ${currentUser.email}!`, 'success');
+        }
+    });
+
+    supabaseClient.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+            console.log('[Auth] Session found on load:', session.user.email);
+            currentUser = session.user;
+            updateUI();
+        }
+    });
+
     // Paddle Configuration
-    const PADDLE_CLIENT_TOKEN = 'test_23dbc859d3815f28e4007383eb8';
+    const PADDLE_CLIENT_TOKEN = 'live_8530a6727826bbe9f96b781f6ac';
     
     if (typeof Paddle !== 'undefined') {
-        Paddle.Environment.set('sandbox');
+        Paddle.Environment.set('production');
     }
 
     // Auth UI Elements
@@ -154,6 +197,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 showNotification('Account created! Please check your email for verification.', 'success');
             } else if (isLoginMode) {
                 showNotification('Welcome back!', 'success');
+                // Force return to home page on success
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1000);
             }
             
             authModal.classList.remove('active');
@@ -166,20 +213,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Google Sign In
+    const googleLoginBtn = document.getElementById('google-login-btn');
+    googleLoginBtn?.addEventListener('click', async () => {
+        try {
+            // Use explicit production URL in production, dynamic URL in development
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const baseUrl = isLocal ? window.location.origin : 'https://flowdaily.org';
+            const redirectTo = `${baseUrl}/auth-callback.html`;
+
+            const { error } = await supabaseClient.auth.signInWithOAuth({
+                provider: 'google',
+                options: { redirectTo }
+            });
+            if (error) throw error;
+        } catch (error) {
+            showNotification(error.message, 'error');
+        }
+    });
+
     // Handle Logout
     logoutBtn?.addEventListener('click', async () => {
         await supabaseClient.auth.signOut();
-    });
-
-    // Listen for Auth Changes
-    supabaseClient.auth.onAuthStateChange((event, session) => {
-        currentUser = session?.user || null;
-        updateUI();
-        
-        // If we were waiting for login to manage, do it now
-        if (currentUser && new URLSearchParams(window.location.search).get('manage') === 'true') {
-            openCustomerPortal();
-        }
+        showNotification('Successfully logged out.', 'info');
     });
 
     // Check for email param in URL (from Electron redirect)
@@ -198,14 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (emailParam) authEmail.value = emailParam;
         authModal.classList.add('active');
         setAuthMode(true);
-    }
-
-    function openCustomerPortal() {
-        const targetEmail = emailParam || (currentUser ? currentUser.email : '');
-        if (typeof Paddle !== 'undefined') {
-            console.log('[Website] Opening customer portal for:', targetEmail);
-            window.location.href = `https://billing.paddle.com/checkout/customer-portal?email=${encodeURIComponent(targetEmail || '')}`;
-        }
     }
 
     function updateUI() {
@@ -232,21 +280,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
         const btn = e.target.closest('.checkout-btn');
         if (btn) {
+            e.preventDefault();
             if (currentUser) {
-                // If logged in, open Paddle Checkout
-                e.preventDefault();
+                const plan = btn.getAttribute('data-plan') || 'monthly';
+                const priceId = plan === 'annual' ? 'pri_01km3sj8nbreym8m0zp4qx9rnn' : 'pri_01km3sfrvp1htyt0kb3tnjt1jv';
                 
-                // Determine Plan from data-plan attribute
-                const plan = btn.getAttribute('data-plan');
-                const isAnnual = plan === 'annual';
-                
-                // Price IDs (Defaulting to test IDs - REPLACE WITH PRODUCTION IDs FOR LAUNCH)
-                const priceId = isAnnual ? 'pri_01kksg72kr8s3k1p7s1y5kg9dc' : 'pri_01kksg348fs9mg5qvhmkj4s0jr';
+                console.log(`[Paddle] Opening ${plan} checkout:`, priceId);
                 
                 if (typeof Paddle !== 'undefined') {
-                    console.log('[Website] Opening checkout for:', currentUser.email, 'Plan:', isAnnual ? 'Annual' : 'Monthly');
                     Paddle.Checkout.open({
-                        items: [{ priceId, quantity: 1 }],
+                        items: [{ priceId: priceId, quantity: 1 }],
                         customer: { email: currentUser.email },
                         customData: { userId: currentUser.id },
                         settings: {
@@ -257,10 +300,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             } else {
-                // Not logged in? Show auth modal and switch to Sign Up
-                e.preventDefault();
-                const authModal = document.getElementById('auth-modal');
-                authModal.style.display = 'flex';
+                showNotification('Please Sign In first to create your Pro account.', 'info');
+                authModal.classList.add('active');
                 setAuthMode(false); // Switch to Sign Up mode
             }
         }
@@ -273,6 +314,16 @@ document.addEventListener('DOMContentLoaded', () => {
             eventCallback: async (event) => {
                 console.log('[Paddle] Event:', event.name, event.data);
                 
+                if (event.name && typeof event.name === 'string' && event.name.includes('error')) {
+                    const detail = event.data?.detail || event.detail || 'Unknown error';
+                    if (detail.includes('transaction_checkout_not_enabled')) {
+                        showNotification('Paddle Account Error: Live checkout is not yet enabled for your account. Please check your Paddle Dashboard status.', 'error');
+                    } else {
+                        showNotification(`Checkout Error: ${detail}`, 'error');
+                    }
+                    return;
+                }
+
                 if (event.name === 'checkout.completed') {
                     console.log('[Paddle] Checkout Success! Updating Supabase...');
                     
@@ -300,9 +351,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+        
+        // Auto-Trigger Checkout if Price ID is present in URL
+        const priceParam = urlParams.get('priceId');
+        const userParam = urlParams.get('userId');
+        const emailParam = urlParams.get('email');
+        
+        if (priceParam && typeof Paddle !== 'undefined') {
+            console.log('[Website] Auto-triggering checkout for Price:', priceParam);
+            setTimeout(() => {
+                Paddle.Checkout.open({
+                    items: [{ priceId: priceParam, quantity: 1 }],
+                    customer: (emailParam && emailParam !== 'undefined') ? { email: emailParam } : undefined,
+                    customData: (userParam && userParam !== 'undefined') ? { userId: userParam } : undefined,
+                    settings: {
+                        displayMode: 'overlay',
+                        theme: 'dark',
+                        locale: 'en'
+                    }
+                });
+            }, 1000); // Small delay to ensure everything is ready
+        }
     }
-
-    // (openCustomerPortal is defined above now)
 
     // Custom CSS for observed elements
     const style = document.createElement('style');
