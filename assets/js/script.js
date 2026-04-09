@@ -283,15 +283,18 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (currentUser) {
                 const plan = btn.getAttribute('data-plan') || 'monthly';
-                const priceId = plan === 'annual' ? 'pri_01km3sj8nbreym8m0zp4qx9rnn' : 'pri_01km3sfrvp1htyt0kb3tnjt1jv';
-                
+                const tier = btn.getAttribute('data-tier') || 'pro';
+                const priceId = plan === 'annual' ? 'pri_01km3sj8nbreym8m0zp4qx9rnn'
+                              : plan === 'weekly' ? 'pri_01knq5qp0nw5ev9fpp9swvpx95'
+                              : 'pri_01km3sfrvp1htyt0kb3tnjt1jv';
+
                 console.log(`[Paddle] Opening ${plan} checkout:`, priceId);
-                
+
                 if (typeof Paddle !== 'undefined') {
                     Paddle.Checkout.open({
                         items: [{ priceId: priceId, quantity: 1 }],
                         customer: { email: currentUser.email },
-                        customData: { userId: currentUser.id },
+                        customData: { userId: currentUser.id, tier: tier },
                         settings: {
                             displayMode: 'overlay',
                             theme: 'dark',
@@ -330,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Update Supabase via the Edge Function or direct update
                     const { error } = await supabaseClient
                         .from('profiles')
-                        .update({ is_pro: true })
+                        .update({ is_pro: true, subscription_tier: 'pro' })
                         .eq('id', currentUser.id);
                         
                     if (error) {
@@ -356,14 +359,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const priceParam = urlParams.get('priceId');
         const userParam = urlParams.get('userId');
         const emailParam = urlParams.get('email');
-        
+        const tierParam = urlParams.get('tier') || 'pro';
+
         if (priceParam && typeof Paddle !== 'undefined') {
             console.log('[Website] Auto-triggering checkout for Price:', priceParam);
             setTimeout(() => {
                 Paddle.Checkout.open({
                     items: [{ priceId: priceParam, quantity: 1 }],
                     customer: (emailParam && emailParam !== 'undefined') ? { email: emailParam } : undefined,
-                    customData: (userParam && userParam !== 'undefined') ? { userId: userParam } : undefined,
+                    customData: (userParam && userParam !== 'undefined') ? { userId: userParam, tier: tierParam } : undefined,
                     settings: {
                         displayMode: 'overlay',
                         theme: 'dark',

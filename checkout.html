@@ -130,11 +130,13 @@
                 </div>
 
                 <ul class="feature-list">
-                    <li class="feature-item"><span>✓</span> Custom Focus Chimes</li>
-                    <li class="feature-item"><span>✓</span> Visual Performance Charts</li>
-                    <li class="feature-item"><span>✓</span> Notion OS Integration</li>
-                    <li class="feature-item"><span>✓</span> Multi-device Cloud Sync</li>
-                    <li class="feature-item"><span>✓</span> All Future Pro Updates</li>
+                    <li class="feature-item"><span>&#x2713;</span> Unlimited Tasks &amp; Projects</li>
+                    <li class="feature-item"><span>&#x2713;</span> Advanced Analytics &amp; Insights</li>
+                    <li class="feature-item"><span>&#x2713;</span> Custom Focus &amp; Completion Sounds</li>
+                    <li class="feature-item"><span>&#x2713;</span> Google Calendar Sync</li>
+                    <li class="feature-item"><span>&#x2713;</span> Cloud Sync &amp; Backup</li>
+                    <li class="feature-item"><span>&#x2713;</span> Data Export</li>
+                    <li class="feature-item"><span>&#x2713;</span> All Future Pro Updates</li>
                 </ul>
 
                 <div id="countdown-banner" style="margin-top: auto; padding: 20px; background: rgba(0,255,136,0.05); border: 1px dashed var(--accent-glow); border-radius: 20px; display: none;">
@@ -162,15 +164,20 @@
         document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
             const plan = urlParams.get('plan') || 'monthly';
-            const priceId = urlParams.get('priceId') || (plan === 'annual' ? 'pri_01km3sj8nbreym8m0zp4qx9rnn' : 'pri_01km3sfrvp1htyt0kb3tnjt1jv');
+            const tier = urlParams.get('tier') || 'pro';
+            const priceId = urlParams.get('priceId') || (
+              plan === 'annual' ? 'pri_01km3sj8nbreym8m0zp4qx9rnn' :
+              plan === 'weekly' ? 'pri_01knq5qp0nw5ev9fpp9swvpx95' :
+              'pri_01km3sfrvp1htyt0kb3tnjt1jv'
+            );
             const emailParam = urlParams.get('email');
             const userIdParam = urlParams.get('userId');
             const tokenParam = urlParams.get('token');
 
             // Update UI
             document.getElementById('plan-type').innerText = `FLOW PRO ${plan.toUpperCase()}`;
-            if (plan === 'annual') document.getElementById('plan-type').style.background = 'rgba(204, 136, 255, 0.15)';
-            if (plan === 'annual') document.getElementById('plan-type').style.color = '#cc88ff';
+            if (plan === 'annual') { document.getElementById('plan-type').style.background = 'rgba(204, 136, 255, 0.15)'; document.getElementById('plan-type').style.color = '#cc88ff'; }
+            if (plan === 'weekly') { document.getElementById('plan-type').style.background = 'rgba(0, 200, 255, 0.15)'; document.getElementById('plan-type').style.color = '#44ccff'; }
 
             // Show free trial banner if appropriate
             document.getElementById('countdown-banner').style.display = 'block';
@@ -231,7 +238,7 @@
                     },
                     items: [{ priceId, quantity: 1 }],
                     customer: (emailParam && emailParam !== 'undefined' && emailParam !== 'null') ? { email: emailParam } : undefined,
-                    customData: (userIdParam && userIdParam !== 'undefined' && userIdParam !== 'null') ? { userId: userIdParam } : undefined
+                    customData: (userIdParam && userIdParam !== 'undefined' && userIdParam !== 'null') ? { userId: userIdParam, tier: tier } : undefined
                 });
             } catch (err) {
                 console.error('[Paddle] Open failed:', err);

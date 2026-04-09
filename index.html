@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="FLOW — Deep Work App for ADHD Brains" />
   <meta name="twitter:description" content="Gamified focus sessions, habit tracking, and Google Calendar sync. Built for the hyperfocus brain." />
   <meta name="twitter:image" content="https://flowdaily.org/assets/img/brand/logo.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FLOW","url":"https://flowdaily.org","operatingSystem":"Windows 11+","applicationCategory":"ProductivityApplication","offers":{"@type":"Offer","price":"5.00","priceCurrency":"USD"},"description":"Deep work app for ADHD brains with gamified focus sessions, habit tracking, and Google Calendar sync."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FLOW","url":"https://flowdaily.org","operatingSystem":"Windows 11+","applicationCategory":"ProductivityApplication","offers":{"@type":"Offer","price":"7.99","priceCurrency":"USD"},"description":"Deep work app for ADHD brains with gamified focus sessions, habit tracking, and Google Calendar sync."}</script>
   <link rel="icon" type="image/png" href="assets/img/brand/logo.png" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -334,38 +334,62 @@
         <p>7-day free trial, no credit card required. Cancel anytime.</p>
 
         <div class="pricing-grid">
+          <!-- Free Tier -->
           <div class="pricing-card glass">
-            <div class="price">$5<span>/mo</span></div>
-            <h3>Monthly</h3>
+            <div class="price">$0<span></span></div>
+            <h3>Free</h3>
+            <p>Get started with the basics.</p>
+            <ul class="pricing-features">
+              <li>Up to 15 active tasks</li>
+              <li>Focus timer &amp; tracking</li>
+              <li>Habit garden</li>
+              <li>Basic analytics</li>
+              <li>Community support</li>
+            </ul>
+            <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost" download style="margin-top:auto;">Download Free</a>
+          </div>
+
+          <!-- Pro Monthly -->
+          <div class="pricing-card glass">
+            <div class="price">$7.99<span>/mo</span></div>
+            <h3>Pro Monthly</h3>
             <p>Full access, no commitment.</p>
             <ul class="pricing-features">
               <li>7-Day Free Trial</li>
-              <li>All Premium Features</li>
-              <li>Google Calendar Sync</li>
-              <li>Cloud Backup</li>
-              <li>Cancel Anytime</li>
+              <li>Unlimited tasks &amp; projects</li>
+              <li>Advanced analytics &amp; insights</li>
+              <li>Google Calendar sync</li>
+              <li>Custom sounds &amp; themes</li>
+              <li>Cloud sync &amp; backup</li>
+              <li>Data export</li>
+              <li>Cancel anytime</li>
             </ul>
-            <button class="btn btn-ghost checkout-btn" data-plan="monthly" style="margin-top:auto;">Start Free Trial</button>
+            <button class="btn btn-ghost checkout-btn" data-plan="monthly" data-tier="pro" style="margin-top:auto;">Start Free Trial</button>
           </div>
 
+          <!-- Pro Annual (Hero) -->
           <div class="pricing-card glass featured">
-            <div class="best-value">SAVE 17%</div>
-            <div class="price">$50<span>/yr</span></div>
-            <h3>Annual</h3>
-            <p>Two months free for committed performers.</p>
+            <div class="best-value">SAVE 48%</div>
+            <div class="price">$49.99<span>/yr</span></div>
+            <h3>Pro Annual</h3>
+            <p>Best value for committed performers.</p>
             <ul class="pricing-features">
               <li>7-Day Free Trial</li>
-              <li>All Premium Features</li>
-              <li>Google Calendar Sync</li>
-              <li>Cloud Backup</li>
-              <li>Priority Support</li>
+              <li>Everything in Pro Monthly</li>
+              <li>Priority support</li>
+              <li>All future Pro updates</li>
+              <li>2.4x more profitable than monthly</li>
             </ul>
-            <button class="btn btn-primary checkout-btn" data-plan="annual" style="margin-top:auto;">Start Free Trial</button>
+            <button class="btn btn-primary checkout-btn" data-plan="annual" data-tier="pro" style="margin-top:auto;">Start Free Trial</button>
           </div>
         </div>
 
+        <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--text-muted);">
+          Or start with <button class="checkout-btn" data-plan="weekly" data-tier="pro" style="background:none;border:none;color:var(--accent);cursor:pointer;font-weight:700;font-size:13px;text-decoration:underline;">$2.99/week</button> — low commitment entry.
+        </p>
+
         <div class="pricing-guarantee">
-          <span class="guarantee-icon">🛡️</span>
+          <span class="guarantee-icon">&#x1F6E1;&#xFE0F;</span>
           <div>
             <strong>30-Day Money Back Guarantee</strong>
             <p>Not satisfied? Email us within 30 days for a full refund. No questions asked.</p>
@@ -375,7 +399,7 @@
         <div class="download-section" style="margin-top:60px">
           <p class="text-muted" style="margin-bottom:16px;">Already have an account?</p>
           <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost" download>
-            ↓ Download Installer — Windows 11
+            &#x2193; Download Installer — Windows 11
           </a>
         </div>
       </div>
