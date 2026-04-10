@@ -262,17 +262,14 @@ document.addEventListener('DOMContentLoaded', () => {
             userNav.style.display = 'flex';
             userDisplay.innerText = currentUser.email;
             
-            // Update pricing buttons to handle checkout
-            document.querySelectorAll('.btn-primary').forEach(btn => {
-                if (btn.innerText === 'Start Free Trial') {
-                    // Change link to checkout button logic
-                    btn.classList.add('checkout-ready');
-                }
+            // Mark checkout buttons as ready when user is signed in
+            document.querySelectorAll('.checkout-btn').forEach(btn => {
+                btn.classList.add('checkout-ready');
             });
         } else {
             authNav.style.display = 'flex';
             userNav.style.display = 'none';
-            document.querySelectorAll('.checkout-ready').forEach(btn => btn.classList.remove('checkout-ready'));
+            document.querySelectorAll('.checkout-btn.checkout-ready').forEach(btn => btn.classList.remove('checkout-ready'));
         }
     }
 

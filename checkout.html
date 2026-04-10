@@ -140,8 +140,8 @@
                 </ul>
 
                 <div id="countdown-banner" style="margin-top: auto; padding: 20px; background: rgba(0,255,136,0.05); border: 1px dashed var(--accent-glow); border-radius: 20px; display: none;">
-                    <div style="font-size: 13px; color: var(--accent); font-weight: 700; margin-bottom: 4px;">7-DAY FREE TRIAL ACTIVE</div>
-                    <div style="font-size: 12px; color: var(--text-secondary); opacity: 0.8;">You won't be charged until your trial expires.</div>
+                    <div style="font-size: 13px; color: var(--accent); font-weight: 700; margin-bottom: 4px;">SECURE CHECKOUT</div>
+                    <div style="font-size: 12px; color: var(--text-secondary); opacity: 0.8;">Cancel anytime from your billing portal.</div>
                 </div>
             </div>
 
@@ -165,6 +165,9 @@
             const urlParams = new URLSearchParams(window.location.search);
             const plan = urlParams.get('plan') || 'monthly';
             const tier = urlParams.get('tier') || 'pro';
+            // Fallback price IDs for direct visits without a ?priceId= param.
+            // Source of truth is the desktop app's `.env` (VITE_PADDLE_*_PRICE_ID).
+            // Keep these in sync with that file whenever Paddle IDs change.
             const priceId = urlParams.get('priceId') || (
               plan === 'annual' ? 'pri_01km3sj8nbreym8m0zp4qx9rnn' :
               plan === 'weekly' ? 'pri_01knq5qp0nw5ev9fpp9swvpx95' :
@@ -179,8 +182,7 @@
             if (plan === 'annual') { document.getElementById('plan-type').style.background = 'rgba(204, 136, 255, 0.15)'; document.getElementById('plan-type').style.color = '#cc88ff'; }
             if (plan === 'weekly') { document.getElementById('plan-type').style.background = 'rgba(0, 200, 255, 0.15)'; document.getElementById('plan-type').style.color = '#44ccff'; }
 
-            // Show free trial banner if appropriate
-            document.getElementById('countdown-banner').style.display = 'block';
+            // Banner hidden by default; no trial offered
 
             // Paddle Configuration
             if (tokenParam && tokenParam.startsWith('test_')) {

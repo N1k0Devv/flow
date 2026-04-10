@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="FLOW — Deep Work App for ADHD Brains" />
   <meta name="twitter:description" content="Gamified focus sessions, habit tracking, and Google Calendar sync. Built for the hyperfocus brain." />
   <meta name="twitter:image" content="https://flowdaily.org/assets/img/brand/logo.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FLOW","url":"https://flowdaily.org","operatingSystem":"Windows 11+","applicationCategory":"ProductivityApplication","offers":{"@type":"Offer","price":"7.99","priceCurrency":"USD"},"description":"Deep work app for ADHD brains with gamified focus sessions, habit tracking, and Google Calendar sync."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FLOW","url":"https://flowdaily.org","operatingSystem":"Windows 11+","applicationCategory":"ProductivityApplication","offers":{"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":"2.99","highPrice":"49.99","offerCount":"3","offers":[{"@type":"Offer","name":"Flow Pro Weekly","price":"2.99","priceCurrency":"USD","billingIncrement":"P1W"},{"@type":"Offer","name":"Flow Pro Monthly","price":"7.99","priceCurrency":"USD","billingIncrement":"P1M"},{"@type":"Offer","name":"Flow Pro Annual","price":"49.99","priceCurrency":"USD","billingIncrement":"P1Y"}]},"description":"Deep work app for ADHD brains with gamified focus sessions, habit tracking, and Google Calendar sync."}</script>
   <link rel="icon" type="image/png" href="assets/img/brand/logo.png" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,12 +51,12 @@
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
         <div id="auth-nav" style="display:flex;align-items:center;gap:12px;">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.2/Flow-Setup-1.3.2.exe" class="btn btn-ghost hide-mobile" download style="padding:8px 16px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Download</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost hide-mobile" download style="padding:8px 16px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Download</a>
           <button class="btn btn-ghost" id="login-nav-btn" style="padding:8px 16px;font-size:14px;">Sign In</button>
           <a href="#pricing" class="btn btn-primary btn-glow" style="padding:10px 20px;font-size:14px;border-radius:12px;font-weight:700;">Get Flow Free</a>
         </div>
         <div id="user-nav" style="display:none;align-items:center;gap:16px;">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.2/Flow-Setup-1.3.2.exe" class="btn btn-ghost hide-mobile" download style="padding:8px 16px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Download App</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost hide-mobile" download style="padding:8px 16px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Download App</a>
           <span id="user-display" style="font-size:13px;color:var(--text-muted);font-family:var(--font-mono);"></span>
           <button class="btn btn-ghost" id="logout-btn" style="padding:6px 12px;font-size:12px;border:1px solid rgba(255,255,255,0.1);">Logout</button>
         </div>
@@ -81,14 +81,14 @@
         recalibration pulses, and a Dopamine Jar that makes winning feel electric.
       </p>
       <div class="hero-btns animate-fade-in delay-2">
-        <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.2/Flow-Setup-1.3.2.exe"
+        <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe"
           class="btn btn-primary btn-lg btn-glow" download>
           Download Free — Windows 11
         </a>
         <a href="#features" class="btn btn-ghost btn-lg">See All Features</a>
       </div>
       <div class="hero-trust animate-fade-in delay-2">
-        <span>✦ 7-day free trial</span>
+        <span>✦ Free tier available</span>
         <span>✦ No credit card required</span>
         <span>✦ Cancel anytime</span>
       </div>
@@ -331,7 +331,7 @@
       <div class="cta-card glass-heavy shadow-premium">
         <h4>Simple Pricing</h4>
         <h2>Start Free. <span class="text-accent">Stay Focused.</span></h2>
-        <p>7-day free trial, no credit card required. Cancel anytime.</p>
+        <p>Start free, upgrade anytime. Cancel whenever you want.</p>
 
         <div class="pricing-grid">
           <!-- Free Tier -->
@@ -340,10 +340,10 @@
             <h3>Free</h3>
             <p>Get started with the basics.</p>
             <ul class="pricing-features">
-              <li>Up to 15 active tasks</li>
+              <li>Up to 5 active tasks</li>
+              <li>Up to 5 habits</li>
               <li>Focus timer &amp; tracking</li>
-              <li>Habit garden</li>
-              <li>Basic analytics</li>
+              <li>Daily reviews</li>
               <li>Community support</li>
             </ul>
             <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-ghost" download style="margin-top:auto;">Download Free</a>
@@ -355,7 +355,6 @@
             <h3>Pro Monthly</h3>
             <p>Full access, no commitment.</p>
             <ul class="pricing-features">
-              <li>7-Day Free Trial</li>
               <li>Unlimited tasks &amp; projects</li>
               <li>Advanced analytics &amp; insights</li>
               <li>Google Calendar sync</li>
@@ -364,7 +363,7 @@
               <li>Data export</li>
               <li>Cancel anytime</li>
             </ul>
-            <button class="btn btn-ghost checkout-btn" data-plan="monthly" data-tier="pro" style="margin-top:auto;">Start Free Trial</button>
+            <button class="btn btn-ghost checkout-btn" data-plan="monthly" data-tier="pro" style="margin-top:auto;">Upgrade to Pro</button>
           </div>
 
           <!-- Pro Annual (Hero) -->
@@ -374,13 +373,12 @@
             <h3>Pro Annual</h3>
             <p>Best value for committed performers.</p>
             <ul class="pricing-features">
-              <li>7-Day Free Trial</li>
               <li>Everything in Pro Monthly</li>
               <li>Priority support</li>
               <li>All future Pro updates</li>
               <li>2.4x more profitable than monthly</li>
             </ul>
-            <button class="btn btn-primary checkout-btn" data-plan="annual" data-tier="pro" style="margin-top:auto;">Start Free Trial</button>
+            <button class="btn btn-primary checkout-btn" data-plan="annual" data-tier="pro" style="margin-top:auto;">Upgrade to Pro</button>
           </div>
         </div>
 
@@ -423,8 +421,8 @@
           <p>Currently Windows 11 desktop only. The app is built with Electron for a native experience. macOS and mobile versions are on the roadmap.</p>
         </details>
         <details class="faq-item glass reveal">
-          <summary>How does the free trial work?</summary>
-          <p>You get 7 days of full Pro access — no credit card required. After the trial, you choose a plan or stay on the free tier with basic features.</p>
+          <summary>What's included in the free tier?</summary>
+          <p>The free tier gives you up to 5 active tasks and 5 habits, the focus timer, and basic analytics. Upgrade to Pro for unlimited everything, Google Calendar sync, custom sounds, and more.</p>
         </details>
         <details class="faq-item glass reveal">
           <summary>Does Google Calendar sync work automatically?</summary>
@@ -449,10 +447,10 @@
         <h2>Ready to do your <span class="text-accent">best work?</span></h2>
         <p>Join thousands of high performers who stopped fighting their brain and started flowing.</p>
         <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px;">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.2/Flow-Setup-1.3.2.exe" class="btn btn-primary btn-lg btn-glow" download>Download Free</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v1.3.0/Flow.Setup.1.3.0.exe" class="btn btn-primary btn-lg btn-glow" download>Download Free</a>
           <a href="#pricing" class="btn btn-ghost btn-lg">View Plans</a>
         </div>
-        <p style="margin-top:24px;font-size:13px;color:var(--text-muted);">Windows 11+ · Free 7-day trial · No credit card</p>
+        <p style="margin-top:24px;font-size:13px;color:var(--text-muted);">Windows 11+ · Free tier available · No credit card</p>
       </div>
     </div>
   </section>
