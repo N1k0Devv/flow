@@ -81,11 +81,36 @@
         </section>
 
         <section>
-          <h2>4. Third-Party Services</h2>
+          <h2>4. Data Sharing, Transfer, and Disclosure</h2>
           <p>
-            We integrate with Google for calendar synchronization and Paddle for
-            payment processing. These services have their own privacy policies
-            which we recommend you review.
+            We disclose Google user data only to the specific recipients below
+            and only for the stated purpose:
+          </p>
+          <ul>
+            <li>
+              <strong>Google APIs (Google LLC):</strong> Calendar data is sent to
+              and retrieved from Google Calendar only to create, update, delete,
+              and read events requested by the user.
+            </li>
+            <li>
+              <strong>Supabase (our processor):</strong> OAuth tokens and related
+              account metadata are stored to keep the Google Calendar
+              integration working securely across sessions.
+            </li>
+            <li>
+              <strong>Paddle (payment processor):</strong> Billing-related data is
+              shared only to process subscriptions and payments.
+            </li>
+            <li>
+              <strong>Legal and safety disclosures:</strong> We may disclose
+              limited data when required by law, regulation, legal process, or
+              to investigate abuse, fraud, or security incidents.
+            </li>
+          </ul>
+          <p>
+            We do not sell Google user data, we do not share Google user data
+            with advertisers, and we do not use Google user data for AI/ML
+            model training.
           </p>
         </section>
 
@@ -105,6 +130,16 @@
             <a href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes" target="_blank" style="color: var(--accent); text-decoration: underline;">Google API Services User Data Policy</a>, 
             including the Limited Use requirements. We only access the minimum necessary calendar data to provide task synchronization features.
           </p>
+          <p>
+            FLOW requests the following OAuth scopes for Google sign-in and
+            calendar sync:
+          </p>
+          <ul>
+            <li><code>https://www.googleapis.com/auth/calendar.readonly</code></li>
+            <li><code>https://www.googleapis.com/auth/calendar.events</code></li>
+            <li><code>email</code></li>
+            <li><code>profile</code></li>
+          </ul>
         </section>
 
         <section>
