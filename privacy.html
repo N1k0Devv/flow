@@ -45,7 +45,7 @@
 
       <header class="legal-header">
         <h1>Privacy Policy</h1>
-        <p class="text-muted">Last Updated: March 21, 2026</p>
+        <p class="text-muted">Last Updated: April 16, 2026</p>
       </header>
 
       <main class="legal-content">
@@ -131,14 +131,24 @@
             including the Limited Use requirements. We only access the minimum necessary calendar data to provide task synchronization features.
           </p>
           <p>
-            FLOW requests the following OAuth scopes for Google sign-in and
-            calendar sync:
+            FLOW requests only the following OAuth scopes — the minimum required
+            to sign you in and synchronize events you create inside FLOW with
+            your Google Calendar:
           </p>
           <ul>
-            <li><code>https://www.googleapis.com/auth/calendar.readonly</code></li>
-            <li><code>https://www.googleapis.com/auth/calendar.events</code></li>
-            <li><code>email</code></li>
-            <li><code>profile</code></li>
+            <li>
+              <code>https://www.googleapis.com/auth/calendar.events</code>
+              — create, read, update, and delete events that FLOW authors on
+              your behalf in your primary Google Calendar. FLOW does not read
+              or modify any other events on your calendar.
+            </li>
+            <li>
+              <code>https://www.googleapis.com/auth/userinfo.profile</code>
+              — read your basic Google profile (name and avatar) so FLOW can
+              show you which Google account is connected. FLOW does not request
+              <code>email</code>, <code>openid</code>, Google Drive, Gmail,
+              Contacts, Tasks, People API, or any other Google scope.
+            </li>
           </ul>
         </section>
 
