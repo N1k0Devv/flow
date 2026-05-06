@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="FLOW — Deep Work App for ADHD Brains" />
   <meta name="twitter:description" content="Gamified focus sessions, habit tracking, and Google Calendar sync. Built for the hyperfocus brain." />
   <meta name="twitter:image" content="https://flowdaily.org/assets/img/brand/logo.png" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FLOW","url":"https://flowdaily.org","operatingSystem":"Windows 10, Windows 11, macOS 10.15+","applicationCategory":"ProductivityApplication","offers":{"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":"2.99","highPrice":"49.99","offerCount":"3","offers":[{"@type":"Offer","name":"Flow Pro Weekly","price":"2.99","priceCurrency":"USD","billingIncrement":"P1W"},{"@type":"Offer","name":"Flow Pro Monthly","price":"7.99","priceCurrency":"USD","billingIncrement":"P1M"},{"@type":"Offer","name":"Flow Pro Annual","price":"49.99","priceCurrency":"USD","billingIncrement":"P1Y"}]},"description":"Deep work app for ADHD brains with gamified focus sessions, habit tracking, and Google Calendar sync."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FLOW","url":"https://flowdaily.org","operatingSystem":"Windows 10, Windows 11, Android","applicationCategory":"ProductivityApplication","offers":{"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":"2.99","highPrice":"49.99","offerCount":"3","offers":[{"@type":"Offer","name":"Flow Pro Weekly","price":"2.99","priceCurrency":"USD","billingIncrement":"P1W"},{"@type":"Offer","name":"Flow Pro Monthly","price":"7.99","priceCurrency":"USD","billingIncrement":"P1M"},{"@type":"Offer","name":"Flow Pro Annual","price":"49.99","priceCurrency":"USD","billingIncrement":"P1Y"}]},"description":"Deep work app for ADHD brains with gamified focus sessions, habit tracking, and Google Calendar sync."}</script>
   <link rel="icon" type="image/png" href="assets/img/brand/logo.png" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -50,13 +50,15 @@
         <a href="#how-it-works">How It Works</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
-        <div id="auth-nav" style="display:flex;align-items:center;gap:12px;">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" class="btn btn-ghost hide-mobile" download style="padding:8px 16px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Download</a>
+        <div id="auth-nav" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" class="btn btn-ghost hide-mobile" download style="padding:8px 14px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Windows</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-2.0.0.apk" class="btn btn-ghost hide-mobile" download style="padding:8px 14px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Android APK</a>
           <button class="btn btn-ghost" id="login-nav-btn" style="padding:8px 16px;font-size:14px;">Sign In</button>
           <a href="#pricing" class="btn btn-primary btn-glow" style="padding:10px 20px;font-size:14px;border-radius:12px;font-weight:700;">Get Flow Free</a>
         </div>
-        <div id="user-nav" style="display:none;align-items:center;gap:16px;">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" class="btn btn-ghost hide-mobile" download style="padding:8px 16px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Download App</a>
+        <div id="user-nav" style="display:none;align-items:center;gap:10px;flex-wrap:wrap;">
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" class="btn btn-ghost hide-mobile" download style="padding:8px 14px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Windows</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-2.0.0.apk" class="btn btn-ghost hide-mobile" download style="padding:8px 14px;font-size:13px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;">↓ Android APK</a>
           <span id="user-display" style="font-size:13px;color:var(--text-muted);font-family:var(--font-mono);"></span>
           <button class="btn btn-ghost" id="logout-btn" style="padding:6px 12px;font-size:12px;border:1px solid rgba(255,255,255,0.1);">Logout</button>
         </div>
@@ -80,10 +82,14 @@
         Stop fighting your brain. Flow works <em>with</em> your hyperfocus — gamified sessions,
         recalibration pulses, and a Dopamine Jar that makes winning feel electric.
       </p>
-      <div class="hero-btns animate-fade-in delay-2">
+      <div class="hero-btns animate-fade-in delay-2" style="flex-wrap:wrap;justify-content:center;gap:12px;">
         <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe"
           class="btn btn-primary btn-lg btn-glow" download>
-          Download Free — Windows &amp; macOS
+          Download for Windows
+        </a>
+        <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-2.0.0.apk"
+          class="btn btn-ghost btn-lg" download style="border:1px solid rgba(0,255,136,0.35);">
+          Download Android APK
         </a>
         <a href="#features" class="btn btn-ghost btn-lg">See All Features</a>
       </div>
@@ -346,7 +352,10 @@
               <li>Daily reviews</li>
               <li>Community support</li>
             </ul>
-            <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" class="btn btn-ghost" download style="margin-top:auto;">Download Free</a>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:auto;width:100%;">
+              <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" class="btn btn-ghost" download>Download Windows</a>
+              <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-2.0.0.apk" class="btn btn-ghost" download style="font-size:13px;border:1px solid rgba(255,255,255,0.08);">Android APK</a>
+            </div>
           </div>
 
           <!-- Pro Monthly -->
@@ -396,9 +405,14 @@
 
         <div class="download-section" style="margin-top:60px">
           <p class="text-muted" style="margin-bottom:16px;">Already have an account?</p>
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" class="btn btn-ghost" download>
-            &#x2193; Download Installer — Windows 10/11 &amp; macOS
-          </a>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" class="btn btn-ghost" download>
+              &#x2193; Windows installer
+            </a>
+            <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-2.0.0.apk" class="btn btn-ghost" download>
+              &#x2193; Android APK
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -418,7 +432,7 @@
         </details>
         <details class="faq-item glass reveal">
           <summary>What platforms is Flow available on?</summary>
-          <p>Flow runs on Windows 10, Windows 11, and macOS (Intel and Apple Silicon). The desktop app is built with Electron for a native experience. iOS and Android builds are coming next — the mobile app shares the same codebase via Capacitor.</p>
+          <p>Flow runs on Windows 10 and Windows 11 via the desktop app (Electron), and on Android phones and tablets via the APK. iOS is coming next — the mobile app shares the same codebase via Capacitor.</p>
         </details>
         <details class="faq-item glass reveal">
           <summary>What's included in the free tier?</summary>
@@ -447,10 +461,11 @@
         <h2>Ready to do your <span class="text-accent">best work?</span></h2>
         <p>Join thousands of high performers who stopped fighting their brain and started flowing.</p>
         <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px;">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" class="btn btn-primary btn-lg btn-glow" download>Download Free</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" class="btn btn-primary btn-lg btn-glow" download>Download for Windows</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-2.0.0.apk" class="btn btn-ghost btn-lg" download>Android APK</a>
           <a href="#pricing" class="btn btn-ghost btn-lg">View Plans</a>
         </div>
-        <p style="margin-top:24px;font-size:13px;color:var(--text-muted);">Windows 10/11 &amp; macOS · Free tier available · No credit card</p>
+        <p style="margin-top:24px;font-size:13px;color:var(--text-muted);">Windows &amp; Android · Free tier available · No credit card</p>
       </div>
     </div>
   </section>
@@ -479,7 +494,8 @@
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
           <a href="#how-it-works">How It Works</a>
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" download>Download</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-Setup-2.0.0.exe" download>Windows</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.0.0/Flow-2.0.0.apk" download>Android APK</a>
         </div>
         <div class="footer-links-group">
           <h5>Support</h5>
