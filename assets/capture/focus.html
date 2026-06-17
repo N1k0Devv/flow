@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280" />
+  <title>Flow — Focus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1280px; height: 800px; overflow: hidden;
+      background: #050508; color: #fff; font-family: 'Outfit', sans-serif;
+      display: flex;
+    }
+    .sidebar {
+      width: 220px; background: #0a0a0f; border-right: 1px solid rgba(255,255,255,0.06);
+      padding: 20px 14px; display: flex; flex-direction: column; gap: 18px;
+    }
+    .logo { font-family: 'Space Mono', monospace; font-weight: 700; letter-spacing: 0.12em; font-size: 15px; color: #00ff88; }
+    .ws { font-size: 10px; color: #555570; font-family: 'Space Mono', monospace; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .ws-item { padding: 8px 10px; border-radius: 10px; font-size: 13px; color: #a0a0c0; }
+    .ws-item.active { background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.35); color: #fff; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat { background: #12121c; border-radius: 10px; padding: 10px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+    .stat b { display: block; font-size: 18px; color: #00ff88; }
+    .stat span { font-size: 9px; color: #555570; font-family: 'Space Mono', monospace; }
+    .nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .nav a { padding: 10px 12px; border-radius: 10px; font-size: 13px; color: #a0a0c0; text-decoration: none; }
+    .nav a.active { background: rgba(0,255,136,0.12); color: #00ff88; font-weight: 600; }
+    .main { flex: 1; padding: 28px 36px; display: flex; flex-direction: column; gap: 24px; }
+    .top { display: flex; justify-content: space-between; align-items: center; }
+    .date { font-family: 'Space Mono', monospace; font-size: 12px; color: #555570; }
+    .goals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .goal { background: #12121c; border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 14px 16px; }
+    .goal h4 { font-size: 13px; margin-bottom: 8px; }
+    .bar { height: 6px; background: #181825; border-radius: 99px; overflow: hidden; margin-bottom: 6px; }
+    .bar i { display: block; height: 100%; background: linear-gradient(90deg, #00ff88, #44ccff); border-radius: 99px; }
+    .goal p { font-size: 11px; color: #a0a0c0; line-height: 1.4; }
+    .focus { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .focus h2 { font-size: 14px; color: #555570; font-family: 'Space Mono', monospace; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; }
+    .timer { font-size: 88px; font-weight: 800; color: #00ff88; text-shadow: 0 0 40px rgba(0,255,136,0.35); line-height: 1; font-variant-numeric: tabular-nums; }
+    .task { font-size: 28px; font-weight: 700; margin: 20px 0 24px; max-width: 560px; }
+    .btn { background: #00ff88; color: #050508; border: none; padding: 16px 48px; border-radius: 14px; font-weight: 800; font-size: 16px; }
+    .fab { position: absolute; bottom: 28px; right: 28px; width: 56px; height: 56px; border-radius: 16px; background: #12121c; border: 1px solid rgba(0,255,136,0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(0,255,136,0.2); }
+    .fab img { width: 34px; height: 34px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">FLOW</div>
+    <div>
+      <div class="ws">WORKSPACES</div>
+      <div class="ws-item active">● Build Co</div>
+      <div class="ws-item">Side Projects</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>12</b><span>WINS</span></div>
+      <div class="stat"><b>9d</b><span>STREAK</span></div>
+    </div>
+    <nav class="nav">
+      <a class="active" href="#">◎ Active Focus</a>
+      <a href="#">▦ Task Board</a>
+      <a href="#">◷ Calendar</a>
+      <a href="#">↻ Daily Habits</a>
+      <a href="#">▤ Analytics</a>
+    </nav>
+  </aside>
+  <main class="main">
+    <div class="top">
+      <div class="date">Tuesday, Jun 9</div>
+      <div style="font-size:12px;color:#a0a0c0;">G Sync Calendar</div>
+    </div>
+    <div class="goals">
+      <div class="goal">
+        <h4>$50k MRR</h4>
+        <div class="bar"><i style="width:58%"></i></div>
+        <p>58% to target · 3 outbound blocks this week</p>
+      </div>
+      <div class="goal">
+        <h4>Launch offer v2</h4>
+        <div class="bar"><i style="width:72%"></i></div>
+        <p>Landing page + checkout live by Friday</p>
+      </div>
+      <div class="goal">
+        <h4>10k audience</h4>
+        <div class="bar"><i style="width:41%"></i></div>
+        <p>2 posts scheduled · pipeline warming</p>
+      </div>
+    </div>
+    <section class="focus">
+      <h2>Current momentum</h2>
+      <div class="timer">47:12</div>
+      <div class="task">Write high-converting offer page headline</div>
+      <button class="btn">✓ Complete Task</button>
+    </section>
+  </main>
+  <div class="fab"><img src="../../img/brand/vector-logo.png" alt="Vector" onerror="this.src='../../img/brand/logo.png'" /></div>
+</body>
+</html>

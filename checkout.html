@@ -158,24 +158,28 @@
 
     <div id="notification-container"></div>
 
-    <!-- Supabase for identifying user -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
+            const siteConfig = window.FLOW_SITE_CONFIG || {};
             const urlParams = new URLSearchParams(window.location.search);
             const plan = urlParams.get('plan') || 'monthly';
             const tier = urlParams.get('tier') || 'pro';
-            // Fallback price IDs for direct visits without a ?priceId= param.
-            // Source of truth is the desktop app's `.env` (VITE_PADDLE_*_PRICE_ID).
-            // Keep these in sync with that file whenever Paddle IDs change.
-            const priceId = urlParams.get('priceId') || (
-              plan === 'annual' ? 'pri_01km3sj8nbreym8m0zp4qx9rnn' :
-              plan === 'weekly' ? 'pri_01knq5qp0nw5ev9fpp9swvpx95' :
-              'pri_01km3sfrvp1htyt0kb3tnjt1jv'
-            );
+            const priceIds = siteConfig.paddlePriceIds?.[tier] || siteConfig.paddlePriceIds?.pro || {};
+            const priceId = urlParams.get('priceId') || priceIds[plan] || '';
             const emailParam = urlParams.get('email');
             const userIdParam = urlParams.get('userId');
             const tokenParam = urlParams.get('token');
+            const paddleToken = (tokenParam || siteConfig.paddleClientToken || '').trim();
+
+            if (!priceId) {
+                alert('Checkout is not configured. Open checkout from the Flow app or run npm run website:config.');
+                return;
+            }
+            if (!paddleToken) {
+                alert('Paddle is not configured. Set VITE_PADDLE_CLIENT_TOKEN in .env and run npm run website:config.');
+                return;
+            }
 
             // Update UI
             document.getElementById('plan-type').innerText = `FLOW PRO ${plan.toUpperCase()}`;
@@ -184,15 +188,10 @@
 
             // Banner hidden by default; no trial offered
 
-            // Paddle Configuration
-            if (tokenParam && tokenParam.startsWith('test_')) {
-                Paddle.Environment.set('sandbox');
-            } else {
-                Paddle.Environment.set('production');
-            }
+            Paddle.Environment.set(paddleToken.startsWith('test_') ? 'sandbox' : 'production');
 
             Paddle.Initialize({ 
-                token: tokenParam || 'live_8530a6727826bbe9f96b781f6ac',
+                token: paddleToken,
                 eventCallback: (event) => {
                     console.log('[Paddle Event]', event.name, event.data || event);
                     

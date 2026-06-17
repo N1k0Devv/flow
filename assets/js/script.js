@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             nav.style.background = 'rgba(10, 10, 15, 0.95)';
-            nav.style.height = '70px';
+            nav.style.height = '64px';
             nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
         } else {
             nav.style.background = 'transparent';
-            nav.style.height = '80px';
+            nav.style.height = '72px';
             nav.style.borderBottom = 'none';
         }
     });
@@ -76,10 +76,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
-    // Supabase Configuration
-    const SUPABASE_URL = 'https://wycbdsyswuhpozbjhzdu.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5Y2Jkc3lzd3VocG96YmpoemR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzMzMxNzQsImV4cCI6MjA4ODkwOTE3NH0.wk8RK0Cf30gEGz_AvSUH9Y5QNDcnz7VmkZ_2Aq_ANWQ';
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const siteConfig = window.FLOW_SITE_CONFIG || {};
+    const SUPABASE_URL = (siteConfig.supabaseUrl || '').trim();
+    const SUPABASE_ANON_KEY = (siteConfig.supabaseAnonKey || '').trim();
+
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        console.error('[Website] Missing config.js — run: npm run website:config');
+        showNotification('Site configuration missing. Run npm run website:config from the project root.', 'error');
+    }
+
+    const supabaseClient = SUPABASE_URL && SUPABASE_ANON_KEY
+        ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+        : null;
+
+    function requireSupabase() {
+        if (!supabaseClient) {
+            showNotification('Site not configured. Run: npm run website:config', 'error');
+            return false;
+        }
+        return true;
+    }
 
     let currentUser = null;
 
@@ -91,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('[Auth] Access token detected in fragment.');
     }
 
-    supabaseClient.auth.onAuthStateChange((event, session) => {
+    supabaseClient?.auth.onAuthStateChange((event, session) => {
         console.log('[Auth] State change event:', event);
         const prevUser = currentUser;
         currentUser = session?.user || null;
@@ -102,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    supabaseClient.auth.getSession().then(({ data: { session } }) => {
+    supabaseClient?.auth.getSession().then(({ data: { session } }) => {
         if (session) {
             console.log('[Auth] Session found on load:', session.user.email);
             currentUser = session.user;
@@ -110,11 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Paddle Configuration
-    const PADDLE_CLIENT_TOKEN = 'live_8530a6727826bbe9f96b781f6ac';
-    
+    const PADDLE_CLIENT_TOKEN = (siteConfig.paddleClientToken || '').trim();
+
     if (typeof Paddle !== 'undefined') {
-        Paddle.Environment.set('production');
+        Paddle.Environment.set(
+            PADDLE_CLIENT_TOKEN.startsWith('test_') ? 'sandbox' : 'production',
+        );
     }
 
     // Auth UI Elements
@@ -170,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle Auth Submission
     authForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (!requireSupabase()) return;
         const loadingOverlay = document.getElementById('auth-loading');
         loadingOverlay.classList.add('active');
         authSubmit.disabled = true;
@@ -216,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Google Sign In
     const googleLoginBtn = document.getElementById('google-login-btn');
     googleLoginBtn?.addEventListener('click', async () => {
+        if (!requireSupabase()) return;
         try {
             // Use explicit production URL in production, dynamic URL in development
             const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -234,9 +253,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle Logout
     logoutBtn?.addEventListener('click', async () => {
+        if (!requireSupabase()) return;
         await supabaseClient.auth.signOut();
         showNotification('Successfully logged out.', 'info');
     });
+
+    async function openManagePortal(targetEmail) {
+        const params = new URLSearchParams();
+        if (targetEmail) params.set('email', targetEmail);
+
+        try {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) {
+                params.set('error', 'sign_in');
+                window.location.href = `manage.html?${params}`;
+                return;
+            }
+
+            const res = await fetch(`${SUPABASE_URL}/functions/v1/paddle-portal`, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${session.access_token}`,
+                    apikey: SUPABASE_ANON_KEY,
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await res.json().catch(() => ({}));
+
+            if (res.ok && data.url) {
+                window.location.href = data.url;
+                return;
+            }
+
+            if (data.error) params.set('error', data.error);
+            if (res.status) params.set('status', String(res.status));
+        } catch (err) {
+            console.warn('[Website] Portal session failed:', err);
+            params.set('error', 'network');
+        }
+
+        window.location.href = `manage.html?${params}`;
+    }
 
     // Check for email param in URL (from Electron redirect)
     const urlParams = new URLSearchParams(window.location.search);
@@ -246,10 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (manageParam === 'true') {
         const targetEmail = emailParam || (currentUser ? currentUser.email : '');
-        if (targetEmail) {
-            console.log('[Website] Redirecting to portal for:', targetEmail);
-            window.location.href = `https://billing.paddle.com/checkout/customer-portal?email=${encodeURIComponent(targetEmail)}`;
-        }
+        console.log('[Website] Opening billing portal for:', targetEmail || '(no email)');
+        openManagePortal(targetEmail);
     } else if ((emailParam || authParam === 'true') && !currentUser) {
         if (emailParam) authEmail.value = emailParam;
         authModal.classList.add('active');
@@ -273,6 +328,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    const PADDLE_PRICE_IDS = siteConfig.paddlePriceIds || {
+        pro: { weekly: '', monthly: '', annual: '' },
+        pro_max: { weekly: '', monthly: '', annual: '' },
+    };
+
     // Handle Paddle Events for Checkout & Portal
     document.addEventListener('click', (e) => {
         const btn = e.target.closest('.checkout-btn');
@@ -281,11 +341,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentUser) {
                 const plan = btn.getAttribute('data-plan') || 'monthly';
                 const tier = btn.getAttribute('data-tier') || 'pro';
-                const priceId = plan === 'annual' ? 'pri_01km3sj8nbreym8m0zp4qx9rnn'
-                              : plan === 'weekly' ? 'pri_01knq5qp0nw5ev9fpp9swvpx95'
-                              : 'pri_01km3sfrvp1htyt0kb3tnjt1jv';
+                const tierPrices = PADDLE_PRICE_IDS[tier] || PADDLE_PRICE_IDS.pro;
+                const priceId = tierPrices[plan] || tierPrices.monthly;
+                if (!priceId) {
+                    showNotification('Pro Max checkout: start your 7-day free trial in the Flow app, or contact support@flowdaily.org.', 'info');
+                    return;
+                }
 
-                console.log(`[Paddle] Opening ${plan} checkout:`, priceId);
+                console.log(`[Paddle] Opening ${tier} ${plan} checkout:`, priceId);
 
                 if (typeof Paddle !== 'undefined') {
                     Paddle.Checkout.open({
@@ -308,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Listen for Paddle Events globally
-    if (typeof Paddle !== 'undefined') {
+    if (typeof Paddle !== 'undefined' && PADDLE_CLIENT_TOKEN) {
         Paddle.Initialize({ 
             token: PADDLE_CLIENT_TOKEN,
             eventCallback: async (event) => {
@@ -326,11 +389,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (event.name === 'checkout.completed') {
                     console.log('[Paddle] Checkout Success! Updating Supabase...');
-                    
-                    // Update Supabase via the Edge Function or direct update
+                    if (!requireSupabase() || !currentUser) return;
+
+                    const tier = event.data?.custom_data?.tier || 'pro';
+                    const paddleCustomerId = event.data?.customer?.id || null;
+                    const profileUpdate = {
+                        is_pro: true,
+                        subscription_tier: tier,
+                        ...(paddleCustomerId ? { paddle_customer_id: paddleCustomerId } : {}),
+                    };
+
                     const { error } = await supabaseClient
                         .from('profiles')
-                        .update({ is_pro: true, subscription_tier: 'pro' })
+                        .update(profileUpdate)
                         .eq('id', currentUser.id);
                         
                     if (error) {

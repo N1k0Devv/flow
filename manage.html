@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Subscription | Flow</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .manage-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .manage-card {
+            max-width: 560px;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.85);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+        .manage-card h1 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        .manage-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .manage-email {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 14px;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+        .manage-error {
+            background: rgba(255, 80, 80, 0.12);
+            border: 1px solid rgba(255, 80, 80, 0.35);
+            color: #ffb4b4;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: left;
+        }
+        .manage-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="manage-page">
+        <div class="manage-card">
+            <h1>Manage your subscription</h1>
+            <p id="manage-intro">Flow billing is handled by Paddle. Open the app and use <strong>Settings → Manage subscription</strong> once billing is configured.</p>
+            <div class="manage-email" id="manage-email"></div>
+            <div class="manage-error" id="manage-error" hidden></div>
+            <div class="manage-actions">
+                <a href="index.html" class="btn btn-primary" style="width:100%;justify-content:center">Back to Flow website</a>
+                <a href="mailto:support@flowdaily.org" class="btn btn-secondary" style="width:100%;justify-content:center">Email support</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const email = params.get('email');
+        const error = params.get('error');
+        const status = params.get('status');
+
+        if (email) {
+            document.getElementById('manage-email').textContent = email;
+        } else {
+            document.getElementById('manage-email').style.display = 'none';
+        }
+
+        const errorEl = document.getElementById('manage-error');
+        if (error === 'sign_in') {
+            errorEl.hidden = false;
+            errorEl.textContent = 'Sign in on the Flow website first, then try Manage subscription again from the app.';
+        } else if (status === '503' || (error && error.includes('not configured'))) {
+            errorEl.hidden = false;
+            errorEl.textContent = 'Billing portal is not configured yet. The developer needs to deploy the paddle-portal Supabase function and set PADDLE_API_KEY.';
+        } else if (status === '404') {
+            errorEl.hidden = false;
+            errorEl.textContent = email
+                ? `No Paddle subscription was found for ${email}. Make sure you subscribed with this email.`
+                : 'No Paddle subscription was found for this account.';
+        } else if (error === 'network') {
+            errorEl.hidden = false;
+            errorEl.textContent = 'Could not reach the billing service. Check your connection and try again from the Flow app.';
+        } else if (error) {
+            errorEl.hidden = false;
+            errorEl.textContent = error;
+        }
+    </script>
+</body>
+</html>

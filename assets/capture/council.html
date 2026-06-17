@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280" />
+  <title>Flow — Vector Council</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { width: 1280px; height: 800px; overflow: hidden; background: #050508; color: #fff; font-family: 'Outfit', sans-serif; display: flex; }
+    .chat-panel { width: 480px; margin-left: auto; height: 100%; background: linear-gradient(180deg,#0c0c14,#08080e); border-left: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; }
+    .chat-head { padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 12px; }
+    .chat-head img { width: 40px; height: 40px; border-radius: 12px; }
+    .chat-head h3 { font-size: 17px; }
+    .chat-body { flex: 1; overflow: hidden; padding: 16px; }
+    .user-bubble { background: rgba(0,255,136,0.12); border: 1px solid rgba(0,255,136,0.25); border-radius: 16px 16px 4px 16px; padding: 12px 14px; font-size: 13px; margin-bottom: 16px; max-width: 90%; margin-left: auto; color: #e8e8f0; }
+    .council { background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 12px; font-size: 12px; }
+    .label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #00ff88; margin-bottom: 10px; text-align: center; }
+    .seats { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 12px; }
+    .seat { text-align: center; }
+    .avatar { width: 44px; height: 44px; border-radius: 50%; margin: 0 auto 4px; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid rgba(255,255,255,0.15); }
+    .seat span { display: block; font-size: 10px; font-weight: 700; }
+    .seat small { font-size: 8px; color: #555570; }
+    .chair-row { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px; border-radius: 10px; border: 1px dashed rgba(255,192,77,0.4); background: rgba(255,192,77,0.06); margin-bottom: 12px; }
+    .chair-row .avatar { width: 38px; height: 38px; background: linear-gradient(135deg,#ffd56a,#ffc04d); color: #1a1200; margin: 0; }
+    .phase { margin-bottom: 10px; }
+    .phase-title { font-family: 'Space Mono', monospace; font-size: 9px; color: #00ff88; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .speech { border-left: 3px solid #00e5a0; background: #12121c; border-radius: 10px; padding: 8px 10px; margin-bottom: 6px; }
+    .speech.skeptic { border-color: #ff5c7a; }
+    .speech.operator { border-color: #4da6ff; }
+    .speech strong { font-size: 11px; display: block; margin-bottom: 2px; }
+    .speech p { color: #a0a0c0; font-size: 11px; line-height: 1.35; }
+    .verdict { background: linear-gradient(155deg,rgba(255,192,77,0.14),rgba(0,0,0,0.3)); border: 1px solid rgba(255,192,77,0.35); border-radius: 12px; padding: 12px; }
+    .verdict h4 { font-family: 'Space Mono', monospace; font-size: 9px; color: #ffc04d; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .verdict p { font-size: 13px; font-weight: 700; line-height: 1.4; }
+    .verdict small { display: block; margin-top: 6px; font-size: 11px; color: #a0a0c0; font-weight: 400; }
+    .bg { flex: 1; background: radial-gradient(circle at 30% 40%, rgba(0,255,136,0.04), transparent 50%), #050508; }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <aside class="chat-panel">
+    <header class="chat-head">
+      <img src="../../img/brand/vector-logo.png" alt="Vector" onerror="this.src='../../img/brand/logo.png'" />
+      <h3>Vector</h3>
+    </header>
+    <div class="chat-body">
+      <div class="user-bubble">Should I spend today on outreach or finishing the offer page?</div>
+      <div class="council">
+        <div class="label">The Council</div>
+        <div class="seats">
+          <div class="seat"><div class="avatar" style="background:linear-gradient(135deg,#00e5a0,#00b87a)">🚀</div><span>Founder</span><small>Vision</small></div>
+          <div class="seat"><div class="avatar" style="background:linear-gradient(135deg,#ff5c7a,#d94460)">🛡</div><span>Skeptic</span><small>Risk</small></div>
+          <div class="seat"><div class="avatar" style="background:linear-gradient(135deg,#4da6ff,#2d7fd4)">⚙</div><span>Operator</span><small>Execute</small></div>
+          <div class="seat"><div class="avatar" style="background:linear-gradient(135deg,#b07cff,#8b5fd4)">🌱</div><span>Flourish</span><small>Energy</small></div>
+        </div>
+        <div class="chair-row">
+          <div class="avatar">⚖</div>
+          <div><strong style="font-size:12px">The Chair</strong><br><small style="color:#555570;font-size:10px">Final Verdict</small></div>
+        </div>
+        <div class="phase">
+          <div class="phase-title">Round 1 — Each seat weighs in</div>
+          <div class="speech"><strong>The Founder</strong><p>Ship the offer page first — without it, outreach has nowhere to convert.</p></div>
+          <div class="speech skeptic"><strong>The Skeptic</strong><p>Don't polish for 6 hours. Is the headline the real blocker or avoidance?</p></div>
+          <div class="speech operator"><strong>The Operator</strong><p>90-minute block: headline + CTA. Then 5 DMs with the live link.</p></div>
+        </div>
+        <div class="verdict">
+          <h4>Round 3 — The Chair decides</h4>
+          <p>Finish the offer headline and CTA in one focused block, then run 5 targeted outreaches today.</p>
+          <small>Next move: Set a 90-min timer on "Write offer headline" — start now.</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+</body>
+</html>
