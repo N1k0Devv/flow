@@ -329,8 +329,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const PADDLE_PRICE_IDS = siteConfig.paddlePriceIds || {
-        pro: { weekly: '', monthly: '', annual: '' },
-        pro_max: { weekly: '', monthly: '', annual: '' },
+        pro: { monthly: '', annual: '' },
+        pro_max: { monthly: '', annual: '' },
     };
 
     // Handle Paddle Events for Checkout & Portal

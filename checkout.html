@@ -181,10 +181,37 @@
                 return;
             }
 
-            // Update UI
-            document.getElementById('plan-type').innerText = `FLOW PRO ${plan.toUpperCase()}`;
+            // Update UI from tier + plan
+            const tierLabel = tier === 'pro_max' ? 'PRO MAX' : 'PRO';
+            document.getElementById('plan-type').innerText = `FLOW ${tierLabel} ${plan.toUpperCase()}`;
+
+            const featuresByTier = {
+              pro: [
+                'Unlimited Tasks & Habits',
+                '$2/mo Vector AI budget',
+                'Google Calendar Sync',
+                'Cloud Sync & Analytics',
+                'Proactive AI Check-ins',
+                'Custom Focus Sounds',
+              ],
+              pro_max: [
+                'Everything in Pro',
+                '$6/mo Vector AI budget',
+                'Vector Most Capable model',
+                'Mentor Council mode',
+                'Priority Processing & Support',
+                'All Future Pro Max Updates',
+              ],
+            };
+            const featureList = document.querySelector('.feature-list');
+            const items = featuresByTier[tier] || featuresByTier.pro;
+            if (featureList) {
+              featureList.innerHTML = items.map((text) =>
+                `<li class="feature-item"><span>&#x2713;</span> ${text}</li>`,
+              ).join('');
+            }
+
             if (plan === 'annual') { document.getElementById('plan-type').style.background = 'rgba(204, 136, 255, 0.15)'; document.getElementById('plan-type').style.color = '#cc88ff'; }
-            if (plan === 'weekly') { document.getElementById('plan-type').style.background = 'rgba(0, 200, 255, 0.15)'; document.getElementById('plan-type').style.color = '#44ccff'; }
 
             // Banner hidden by default; no trial offered
 
