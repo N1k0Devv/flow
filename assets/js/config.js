@@ -2,17 +2,42 @@
 window.FLOW_SITE_CONFIG = {
   "supabaseUrl": "https://wycbdsyswuhpozbjhzdu.supabase.co",
   "supabaseAnonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5Y2Jkc3lzd3VocG96YmpoemR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzMzMxNzQsImV4cCI6MjA4ODkwOTE3NH0.wk8RK0Cf30gEGz_AvSUH9Y5QNDcnz7VmkZ_2Aq_ANWQ",
-  "paddleClientToken": "",
+  "paddleClientToken": "live_8530a6727826bbe9f96b781f6ac",
+  "pricing": {
+    "pro": {
+      "monthly": "$9.99",
+      "annual": "$59.99",
+      "apiBudgetMonthlyUsd": 2,
+      "highlights": [
+        "Unlimited tasks & habits",
+        "$2/mo Vector AI budget",
+        "Google Calendar sync",
+        "Cloud sync & analytics",
+        "Proactive check-ins"
+      ]
+    },
+    "pro_max": {
+      "monthly": "$19.99",
+      "annual": "$143.99",
+      "apiBudgetMonthlyUsd": 6,
+      "highlights": [
+        "Everything in Pro",
+        "3× Vector AI usage",
+        "Vector Most Capable model",
+        "Mentor Council mode",
+        "Priority processing & support"
+      ]
+    },
+    "trialDays": 3
+  },
   "paddlePriceIds": {
     "pro": {
-      "weekly": "",
       "monthly": "pri_01km3sfrvp1htyt0kb3tnjt1jv",
       "annual": "pri_01km3sj8nbreym8m0zp4qx9rnn"
     },
     "pro_max": {
-      "weekly": "",
-      "monthly": "",
-      "annual": ""
+      "monthly": "pri_01ktpwbxzkg2rxq4y5n7a6n6pa",
+      "annual": "pri_01ktpwdnvk5zjcspcs76pa33r3"
     }
   }
 };

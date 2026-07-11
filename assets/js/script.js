@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tierPrices = PADDLE_PRICE_IDS[tier] || PADDLE_PRICE_IDS.pro;
                 const priceId = tierPrices[plan] || tierPrices.monthly;
                 if (!priceId) {
-                    showNotification('Pro Max checkout: start your 7-day free trial in the Flow app, or contact support@flowdaily.org.', 'info');
+                    showNotification('Pro Max checkout: start your 3-day free trial in the Flow app, or contact support@flowdaily.org.', 'info');
                     return;
                 }
 

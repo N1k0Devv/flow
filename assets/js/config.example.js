@@ -9,7 +9,7 @@ window.FLOW_SITE_CONFIG = {
   pricing: {
     pro: { monthly: '$9.99', annual: '$59.99', apiBudgetMonthlyUsd: 2 },
     pro_max: { monthly: '$19.99', annual: '$143.99', apiBudgetMonthlyUsd: 6 },
-    trialDays: 7,
+    trialDays: 3,
   },
   paddlePriceIds: {
     pro: {
