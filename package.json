@@ -1,0 +1,8 @@
+{
+  "name": "flow-website",
+  "private": true,
+  "description": "Static Flow marketing/checkout site (flowdaily.org)",
+  "scripts": {
+    "website:config": "node ./ensure-config.js"
+  }
+}
