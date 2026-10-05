@@ -1,16 +1,15 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>FLOW — Your AI Mentor, Trained on the World's Best Entrepreneurs</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' *; connect-src 'self' http://127.0.0.1:5500 https://*.supabase.co https://*.paddle.com https://*.paddle.io https://cdn.jsdelivr.net https://vitals.vercel-insights.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdn.paddle.com https://*.vercel-scripts.com https://*.vercel.js https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.paddle.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://*.supabase.co https://www.google.com https://*.paddle.com; frame-src 'self' https://*.paddle.com https://*.paddle.io;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' *; connect-src 'self' http://127.0.0.1:5500 https://*.supabase.co https://*.paddle.com https://*.paddle.io https://cdn.jsdelivr.net https://vitals.vercel-insights.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdn.paddle.com https://*.vercel-scripts.com https://*.vercel.js https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://db.onlinewebfonts.com https://cdnjs.cloudflare.com https://*.paddle.com; font-src 'self' https://fonts.gstatic.com https://db.onlinewebfonts.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https://*.supabase.co https://www.google.com https://*.paddle.com; media-src 'self' https://d8j0ntlcm91z4.cloudfront.net; frame-src 'self' https://*.paddle.com https://*.paddle.io;">
   <link rel="canonical" href="https://flowdaily.org/" />
   <meta name="description" content="Flow is the AI mentor and execution OS for entrepreneurs, creators, and people who refuse to stand still. Vector is trained on 10,000+ videos and the best productivity & business books from Alex Hormozi, Iman Gadzhi, Ali Abdaal, David Goggins, Nik Setting, Tony Robbins, Jeremy Miner and more — then turns it into your daily plan, including full video production plans." />
   <meta name="keywords" content="AI mentor app, entrepreneur productivity app, AI business coach, video planning AI, Alex Hormozi, Iman Gadzhi, Ali Abdaal, David Goggins, Nik Setting, Tony Robbins, Jeremy Miner, AI day planner, goal tracking, deep work, habit tracker, self improvement app" />
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#00ff88" />
+  <meta name="theme-color" content="#000000" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://flowdaily.org/" />
   <meta property="og:title" content="FLOW — Your AI Mentor, Trained on the World's Best Entrepreneurs" />
@@ -24,112 +23,151 @@
   <meta name="twitter:image" content="https://flowdaily.org/assets/img/brand/logo.png" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FLOW","url":"https://flowdaily.org","operatingSystem":"Windows 10, Windows 11, Android","applicationCategory":"ProductivityApplication","offers":{"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":"9.99","highPrice":"143.99","offerCount":"4","offers":[{"@type":"Offer","name":"Flow Pro Monthly","price":"9.99","priceCurrency":"USD","billingIncrement":"P1M"},{"@type":"Offer","name":"Flow Pro Max Monthly","price":"19.99","priceCurrency":"USD","billingIncrement":"P1M"},{"@type":"Offer","name":"Flow Pro Annual","price":"59.99","priceCurrency":"USD","billingIncrement":"P1Y"},{"@type":"Offer","name":"Flow Pro Max Annual","price":"143.99","priceCurrency":"USD","billingIncrement":"P1Y"}]},"description":"AI mentor and execution OS for entrepreneurs. Vector is trained on 10,000+ videos and the best business & productivity books, plans your day, and helps you plan videos end-to-end."}</script>
   <link rel="icon" type="image/png" href="assets/img/brand/logo.png" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="styles.css" />
+
   <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
-  <div class="aura-orb orb-1"></div>
-  <div class="aura-orb orb-2"></div>
-  <div class="mesh-bg"></div>
-  <div id="notification-container"></div>
+  <div id="notification-container" aria-live="polite"></div>
 
-  <!-- ── NAV ─────────────────────────────────── -->
-  <nav class="glass" id="navbar">
-    <div class="container nav-content">
-      <a href="/" class="logo">
-        <img src="assets/img/brand/logo.png" alt="FLOW Logo" class="logo-img" />
-        <span class="logo-text">FLOW</span>
+  <!-- ── FIRST VIEWPORT ──────────────────────────── -->
+  <section class="page" id="home">
+    <div class="bg" aria-hidden="true">
+      <video class="bg-video" autoplay muted loop playsinline>
+        <source
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+
+    <header class="header">
+      <a href="/" class="logo" aria-label="Flow home">
+        <img src="assets/logo.webp" alt="" width="52" height="52" />
       </a>
-      <div class="nav-links" id="nav-links">
-        <div class="nav-menu">
-          <a href="#mentor">AI Mentor</a>
-          <a href="#mentors">Knowledge</a>
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <div class="nav-actions" id="auth-nav">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-Setup-2.8.0.exe" class="btn btn-ghost nav-btn hide-tablet" download>↓ Windows</a>
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-2.8.0-debug.apk" class="btn btn-ghost nav-btn hide-tablet" download>↓ Android</a>
-          <button class="btn btn-ghost nav-btn" id="login-nav-btn">Sign In</button>
-          <a href="#pricing" class="btn btn-primary nav-btn nav-btn-primary btn-glow">Start Free Trial</a>
-        </div>
-        <div class="nav-actions" id="user-nav" style="display:none;">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-Setup-2.8.0.exe" class="btn btn-ghost nav-btn hide-tablet" download>↓ Windows</a>
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-2.8.0-debug.apk" class="btn btn-ghost nav-btn hide-tablet" download>↓ Android</a>
-          <span id="user-display" class="nav-user-email"></span>
-          <button class="btn btn-ghost nav-btn" id="logout-btn">Logout</button>
-        </div>
-      </div>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#home" class="nav-link is-active" aria-current="page">Home</a>
+        <a href="#features" class="nav-link">Product</a>
+        <a href="#mentors" class="nav-link">Mentors</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+      </nav>
+
+      <button type="button" class="sign-in js-signin">Sign in</button>
+
+      <button
+        type="button"
+        class="burger"
+        id="burger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
         <span></span><span></span><span></span>
       </button>
-    </div>
-  </nav>
+    </header>
 
-  <!-- ── HERO ────────────────────────────────── -->
-  <header class="hero">
-    <div class="container hero-content">
-      <div class="hero-badge animate-fade-in">
-        <span class="badge-dot"></span> 3-day free Pro trial — no credit card
+    <div class="hero">
+      <div class="trust anim" style="--d: 0.05s">
+        <span class="trust-avatar a1"><span class="trust-inner"><img src="assets/img/coaches/hormozi.jpg" alt="Alex Hormozi" /></span></span>
+        <span class="trust-avatar a2"><span class="trust-inner"><img src="assets/img/coaches/gadzhi.jpg" alt="Iman Gadzhi" /></span></span>
+        <span class="trust-avatar a3"><span class="trust-inner"><img src="assets/img/coaches/goggins.jpg" alt="David Goggins" /></span></span>
+        <span class="trust-pill">Trained on 10,000+ Mentor Videos</span>
       </div>
-      <h1 class="animate-fade-in">
-        The Mentors You Can't<br/>Afford, <span class="text-accent">In Your Pocket</span>
+
+      <h1 class="headline anim">
+        <span class="line l1">Your AI Mentor</span>
+        <span class="line l2">Trained On The Best</span>
       </h1>
-      <p class="animate-fade-in delay-1">
-        Flow is the AI mentor and execution OS for entrepreneurs, creators, and anyone in motion.
-        Vector is trained on <strong>10,000+ videos</strong> and the best business &amp; productivity books from
-        Hormozi, Gadzhi, Goggins, Abdaal &amp; more — then turns that wisdom into <strong>your</strong> daily plan.
-      </p>
-      <div class="hero-btns animate-fade-in delay-2" style="flex-wrap:wrap;justify-content:center;gap:12px;">
-        <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-Setup-2.8.0.exe"
-          class="btn btn-primary btn-lg btn-glow" download>
-          Download for Windows
-        </a>
-        <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-2.8.0-debug.apk"
-          class="btn btn-ghost btn-lg" download style="border:1px solid rgba(0,255,136,0.35);">
-          Download Android APK
-        </a>
-        <a href="#mentors" class="btn btn-ghost btn-lg">Meet the Mentors</a>
-      </div>
-      <div class="hero-trust animate-fade-in delay-2">
-        <span>✦ 3-day free Pro trial</span>
-        <span>✦ No credit card to start</span>
-        <span>✦ Windows &amp; Android</span>
-      </div>
 
-      <!-- Hero mentor console (no app screenshots) -->
-      <div class="hero-console glass-heavy shadow-premium animate-fade-in delay-2">
+      <p class="subhead anim" style="--d: 0.28s">
+        Vector studied 10,000+ videos and the best business books from Hormozi,
+        Gadzhi, Goggins &amp; more, then turns that wisdom into your daily plan.
+      </p>
+
+      <a href="#pricing" class="cta anim" style="--d: 0.4s">Start Free Trial</a>
+    </div>
+
+    <footer class="stats" aria-label="Flow in numbers">
+      <div class="stat anim" style="--d: 0.5s">
+        <span class="stat-icon" aria-hidden="true">&gt;</span>
+        <span class="stat-value" data-target="10000" data-suffix="+" data-decimals="0">0+</span>
+        <span class="stat-label">Mentor Videos Uploaded</span>
+      </div>
+      <div class="stat anim" style="--d: 0.58s">
+        <span class="stat-icon" aria-hidden="true">#</span>
+        <span class="stat-value" data-target="50" data-suffix="+" data-decimals="0">0+</span>
+        <span class="stat-label">Business &amp; Productivity Books</span>
+      </div>
+      <div class="stat anim" style="--d: 0.66s">
+        <span class="stat-icon" aria-hidden="true">*</span>
+        <span class="stat-value" data-target="7" data-suffix="+" data-decimals="0">0+</span>
+        <span class="stat-label">Elite Mentors Synthesized</span>
+      </div>
+      <div class="stat anim" style="--d: 0.74s">
+        <span class="stat-icon" aria-hidden="true">@</span>
+        <span class="stat-value" data-target="1" data-suffix="" data-decimals="0">0</span>
+        <span class="stat-label">Voice That Knows Your Goals</span>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ── MOBILE MENU ─────────────────────────────── -->
+  <div class="menu-overlay" id="menu-overlay" hidden></div>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav class="mobile-links" aria-label="Mobile">
+      <a href="#home" class="mobile-link is-active" style="--i: 0">Home</a>
+      <a href="#features" class="mobile-link" style="--i: 1">Product</a>
+      <a href="#mentors" class="mobile-link" style="--i: 2">Mentors</a>
+      <a href="#pricing" class="mobile-link" style="--i: 3">Pricing</a>
+    </nav>
+    <button type="button" class="mobile-sign-in js-signin" style="--i: 4">Sign in</button>
+  </div>
+
+  <!-- ── VECTOR CONSOLE ──────────────────────────── -->
+  <section class="section section-console">
+    <div class="container">
+      <div class="console reveal">
         <div class="console-bar">
-          <span class="dot" style="background:#ff5f57"></span>
-          <span class="dot" style="background:#febc2e"></span>
-          <span class="dot" style="background:#28c840"></span>
+          <span class="console-dots"><i></i><i></i><i></i></span>
           <span class="console-title">Vector · AI Mentor</span>
         </div>
         <div class="console-body">
-          <div class="console-msg console-user">
-            <span class="console-avatar console-avatar-you">YOU</span>
-            <p>I have 6 hours and a launch in 3 days. What do I actually do today?</p>
+          <div class="msg msg-user">
+            <span class="msg-avatar msg-avatar-you">YOU</span>
+            <p class="bubble bubble-user">I have 6 hours and a launch in 3 days. What do I actually do today?</p>
           </div>
-          <div class="console-msg console-vector">
-            <span class="console-avatar console-avatar-v"><img src="assets/img/brand/vector-logo.svg" alt="Vector" /></span>
-            <div class="console-bubble">
+          <div class="msg msg-ai">
+            <span class="msg-avatar"><img src="assets/img/brand/vector-logo.svg" alt="Vector" /></span>
+            <div class="bubble bubble-ai">
               <p><strong>Ship the offer page first (90 min)</strong> — it's the bottleneck for everything else. Then send 10 DMs to warm leads (Core Four), and protect a deep-work block at 2 PM.</p>
-              <div class="console-chips">
-                <span class="console-chip">Hormozi · Grand Slam Offer</span>
-                <span class="console-chip">Goggins · do the hard thing first</span>
-                <span class="console-chip">Newport · deep work block</span>
+              <div class="chips">
+                <span class="chip">Hormozi · Grand Slam Offer</span>
+                <span class="chip">Goggins · do the hard thing first</span>
+                <span class="chip">Newport · deep work block</span>
               </div>
             </div>
           </div>
         </div>
         <div class="console-foot">
-          <span class="console-trained">Trained on</span>
+          <span class="console-label">Trained on</span>
           <div class="console-faces">
             <img src="assets/img/coaches/hormozi.jpg" alt="Alex Hormozi" />
             <img src="assets/img/coaches/gadzhi.jpg" alt="Iman Gadzhi" />
@@ -137,423 +175,395 @@
             <img src="assets/img/coaches/goggins.jpg" alt="David Goggins" />
             <img src="assets/img/coaches/nik.jpg" alt="Nik Setting" />
           </div>
-          <span class="console-more">+ 10,000 more videos</span>
+          <span class="console-label">+ 10,000 more videos</span>
         </div>
       </div>
-    </div>
-  </header>
-
-  <!-- ── KNOWLEDGE STATS BAR ───────────────────── -->
-  <section class="stats-bar reveal">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-number text-accent">10,000+</span>
-          <span class="stat-label">Mentor videos uploaded</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-number text-accent">50+</span>
-          <span class="stat-label">Business &amp; productivity books</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-number text-accent">7+</span>
-          <span class="stat-label">Elite mentors synthesized</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-number text-accent">1</span>
-          <span class="stat-label">Voice that knows your goals</span>
-        </div>
-      </div>
+      <ul class="trial-points reveal">
+        <li>3-day free Pro trial</li>
+        <li>No credit card to start</li>
+        <li>Windows &amp; Android</li>
+      </ul>
     </div>
   </section>
 
-  <!-- ── WHO IT'S FOR ──────────────────────────── -->
-  <section id="who" class="who-section reveal">
+  <!-- ── WHO IT'S FOR ────────────────────────────── -->
+  <section id="who" class="section">
     <div class="container">
-      <div class="section-header reveal">
-        <h4>Who Flow Is For</h4>
-        <h2>Built for People <span class="text-accent">In Motion</span></h2>
+      <div class="section-head reveal">
+        <p class="eyebrow">Who Flow Is For</p>
+        <h2 class="section-title">Built for People <span class="dim">In Motion</span></h2>
         <p class="section-sub">If you're chasing something real — revenue, a launch, an audience, a stronger body — generic to-do apps slow you down. Flow gives you a mentor that knows where you're going.</p>
       </div>
-      <div class="audience-grid">
-        <div class="audience-card glass reveal">
-          <div class="audience-icon">🚀</div>
+      <div class="grid grid-3">
+        <article class="card reveal">
+          <span class="card-icon"><i class="fa-solid fa-rocket"></i></span>
           <h3>Entrepreneurs &amp; Founders</h3>
           <p>You don't need another task list — you need to know which move actually grows revenue this week. Vector ranks it for you.</p>
-        </div>
-        <div class="audience-card glass reveal">
-          <div class="audience-icon">🎬</div>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon"><i class="fa-solid fa-clapperboard"></i></span>
           <h3>Creators &amp; Solopreneurs</h3>
           <p>Build the brand, ship the content, close the clients. Ask Vector to plan a video — structure, shot list, and edit walkthrough included.</p>
-        </div>
-        <div class="audience-card glass reveal">
-          <div class="audience-icon">📈</div>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon"><i class="fa-solid fa-chart-line"></i></span>
           <h3>People Who Want to Improve</h3>
           <p>Discipline, habits, focus, momentum. If you're done drifting and ready to execute, Flow is the system that holds the line.</p>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ── THE MENTORS / KNOWLEDGE ───────────────── -->
-  <section id="mentors" class="mentors-section reveal">
+  <!-- ── THE MENTORS / KNOWLEDGE ─────────────────── -->
+  <section id="mentors" class="section">
     <div class="container">
-      <div class="section-header reveal">
-        <h4>Trained on the Best</h4>
-        <h2>The Knowledge of the<br/><span class="text-accent">World's Top Operators</span></h2>
+      <div class="section-head reveal">
+        <p class="eyebrow">Trained on the Best</p>
+        <h2 class="section-title">The Knowledge of the <span class="dim">World's Top Operators</span></h2>
         <p class="section-sub">Vector has studied <strong>10,000+ uploaded videos</strong> and thousands of hours from the people who built real businesses and reshaped millions of lives — then learned to apply their frameworks to <em>your</em> goals, tasks, and habits. One voice. Every framework. No fake quotes, no roleplay.</p>
       </div>
 
-      <div class="coach-grid">
-        <article class="coach-card glass reveal">
-          <img class="coach-photo" src="assets/img/coaches/hormozi.jpg" alt="Alex Hormozi" />
+      <div class="grid grid-3">
+        <article class="coach reveal">
+          <img class="coach-photo" src="assets/img/coaches/hormozi.jpg" alt="Alex Hormozi" loading="lazy" />
           <div class="coach-meta">
             <h3>Alex Hormozi</h3>
-            <span class="coach-tag" style="--c:#ffaa00">Business · Offers</span>
+            <span class="tag">Business · Offers</span>
             <p>Grand Slam Offers, the Value Equation, Core Four lead gen — make offers so good people feel stupid saying no.</p>
           </div>
         </article>
-        <article class="coach-card glass reveal">
-          <img class="coach-photo" src="assets/img/coaches/gadzhi.jpg" alt="Iman Gadzhi" />
+        <article class="coach reveal">
+          <img class="coach-photo" src="assets/img/coaches/gadzhi.jpg" alt="Iman Gadzhi" loading="lazy" />
           <div class="coach-meta">
             <h3>Iman Gadzhi</h3>
-            <span class="coach-tag" style="--c:#ff6688">Brand · Agency</span>
+            <span class="tag">Brand · Agency</span>
             <p>Personal brand as distribution, the agency model, Monk Mode sprints, and skill-stacking your way to leverage.</p>
           </div>
         </article>
-        <article class="coach-card glass reveal">
-          <img class="coach-photo" src="assets/img/coaches/abdaal.jpg" alt="Ali Abdaal" />
+        <article class="coach reveal">
+          <img class="coach-photo" src="assets/img/coaches/abdaal.jpg" alt="Ali Abdaal" loading="lazy" />
           <div class="coach-meta">
             <h3>Ali Abdaal</h3>
-            <span class="coach-tag" style="--c:#44ccff">Productivity</span>
+            <span class="tag">Productivity</span>
             <p>Feel-Good Productivity, the weekly review, and an experimental mindset that makes consistency sustainable.</p>
           </div>
         </article>
-        <article class="coach-card glass reveal">
-          <img class="coach-photo" src="assets/img/coaches/goggins.jpg" alt="David Goggins" />
+        <article class="coach reveal">
+          <img class="coach-photo" src="assets/img/coaches/goggins.jpg" alt="David Goggins" loading="lazy" />
           <div class="coach-meta">
             <h3>David Goggins</h3>
-            <span class="coach-tag" style="--c:#ff4444">Discipline</span>
+            <span class="tag">Discipline</span>
             <p>The 40% rule, the accountability mirror, and the truth that discipline — not motivation — carries you.</p>
           </div>
         </article>
-        <article class="coach-card glass reveal">
-          <img class="coach-photo" src="assets/img/coaches/nik.jpg" alt="Nik Setting" />
+        <article class="coach reveal">
+          <img class="coach-photo" src="assets/img/coaches/nik.jpg" alt="Nik Setting" loading="lazy" />
           <div class="coach-meta">
             <h3>Nik Setting</h3>
-            <span class="coach-tag" style="--c:#c9a227">Scale · Systems</span>
+            <span class="tag">Scale · Systems</span>
             <p>Leverage ranking, profile funnels, and turning content into qualified pipeline you can actually systematize.</p>
           </div>
         </article>
-        <article class="coach-card coach-card-more glass reveal">
-          <div class="coach-more-inner">
+        <article class="coach coach-more reveal">
+          <div class="coach-meta">
             <h3>+ Many more</h3>
             <p>Frameworks synthesized from the people shaping how the ambitious work and live:</p>
-            <div class="coach-chips">
-              <span>Tony Robbins</span>
-              <span>Jeremy Miner</span>
-              <span>Naval Ravikant</span>
-              <span>James Clear</span>
-              <span>Cal Newport</span>
-              <span>Steven Pressfield</span>
+            <div class="chips">
+              <span class="chip">Tony Robbins</span>
+              <span class="chip">Jeremy Miner</span>
+              <span class="chip">Naval Ravikant</span>
+              <span class="chip">James Clear</span>
+              <span class="chip">Cal Newport</span>
+              <span class="chip">Steven Pressfield</span>
             </div>
           </div>
         </article>
       </div>
 
-      <p class="mentors-note reveal">Vector synthesizes proven frameworks in its own words and applies them to your real data. It never impersonates real people or fabricates quotes.</p>
+      <p class="note reveal">Vector synthesizes proven frameworks in its own words and applies them to your real data. It never impersonates real people or fabricates quotes.</p>
     </div>
   </section>
 
-  <!-- ── WHY FLOW ─────────────────────────────── -->
-  <section id="why" class="jokes-section reveal" style="padding:100px 0;">
+  <!-- ── WHY FLOW ────────────────────────────────── -->
+  <section id="why" class="section">
     <div class="container">
-      <div class="section-header reveal">
-        <h4>Why It's Different</h4>
-        <h2>Most Apps Track Tasks.<br/><span class="text-accent">Flow Mentors You Forward.</span></h2>
+      <div class="section-head reveal">
+        <p class="eyebrow">Why It's Different</p>
+        <h2 class="section-title">Most Apps Track Tasks. <span class="dim">Flow Mentors You Forward.</span></h2>
       </div>
-      <div class="jokes-grid">
-        <div class="joke-card glass reveal">
-          <div class="joke-emoji">🧠</div>
-          <p class="joke-before">"Other apps: <em>Here's an empty box. Type a task. Good luck."</em></p>
-          <div class="joke-arrow">↓</div>
-          <p class="joke-after"><strong>Flow: A mentor that has studied the best, knows your goals, and tells you the highest-leverage move to make right now.</strong></p>
-        </div>
-        <div class="joke-card glass reveal">
-          <div class="joke-emoji">⚖️</div>
-          <p class="joke-before">"Other chatbots: <em>One generic, motivational answer."</em></p>
-          <div class="joke-arrow">↓</div>
-          <p class="joke-after"><strong>Flow: Vector applies real frameworks — offers, leads, discipline, deep work — to your actual tasks. Specific, not fluffy.</strong></p>
-        </div>
-        <div class="joke-card glass reveal">
-          <div class="joke-emoji">⚡</div>
-          <p class="joke-before">"Other apps: <em>Stay focused somehow."</em></p>
-          <div class="joke-arrow">↓</div>
-          <p class="joke-after"><strong>Flow: One objective on screen, momentum timer, recalibration pulses — built for people who execute under pressure.</strong></p>
-        </div>
+      <div class="grid grid-3">
+        <article class="card compare reveal">
+          <span class="card-icon"><i class="fa-solid fa-brain"></i></span>
+          <p class="compare-before">"Other apps: <em>Here's an empty box. Type a task. Good luck."</em></p>
+          <span class="compare-arrow" aria-hidden="true">↓</span>
+          <p class="compare-after">Flow: A mentor that has studied the best, knows your goals, and tells you the highest-leverage move to make right now.</p>
+        </article>
+        <article class="card compare reveal">
+          <span class="card-icon"><i class="fa-solid fa-scale-balanced"></i></span>
+          <p class="compare-before">"Other chatbots: <em>One generic, motivational answer."</em></p>
+          <span class="compare-arrow" aria-hidden="true">↓</span>
+          <p class="compare-after">Flow: Vector applies real frameworks — offers, leads, discipline, deep work — to your actual tasks. Specific, not fluffy.</p>
+        </article>
+        <article class="card compare reveal">
+          <span class="card-icon"><i class="fa-solid fa-bolt"></i></span>
+          <p class="compare-before">"Other apps: <em>Stay focused somehow."</em></p>
+          <span class="compare-arrow" aria-hidden="true">↓</span>
+          <p class="compare-after">Flow: One objective on screen, momentum timer, recalibration pulses — built for people who execute under pressure.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ── HOW IT WORKS ─────────────────────────── -->
-  <section id="how-it-works" class="how-it-works reveal">
+  <!-- ── HOW IT WORKS ────────────────────────────── -->
+  <section id="how-it-works" class="section">
     <div class="container">
-      <div class="section-header reveal">
-        <h4>The System</h4>
-        <h2>Three Steps to <span class="text-accent">Momentum</span></h2>
+      <div class="section-head reveal">
+        <p class="eyebrow">The System</p>
+        <h2 class="section-title">Three Steps to <span class="dim">Momentum</span></h2>
       </div>
-      <div class="steps-grid">
-        <div class="step-card reveal">
-          <div class="step-number">01</div>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step-num">01</span>
           <h3>Set the Target</h3>
           <p>Define goals — revenue, launch, audience, health. Link tasks to what you're actually chasing. Vector reads all of it.</p>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step-card reveal">
-          <div class="step-number">02</div>
+        </li>
+        <li class="step reveal">
+          <span class="step-num">02</span>
           <h3>Ask Your Mentor</h3>
           <p>"Plan my day." "What do I do next?" "Plan a video." "Write my offer." Vector answers using mentor frameworks tuned to your context.</p>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step-card reveal">
-          <div class="step-number">03</div>
+        </li>
+        <li class="step reveal">
+          <span class="step-num">03</span>
           <h3>Execute in Deep Focus</h3>
           <p>Enter Active Focus on the highest-leverage task. Ship the block, log the win, protect the streak. Repeat tomorrow.</p>
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- ── FEATURE DETAIL: MENTOR ────────────────── -->
-  <section id="mentor" class="feature-detail glass-heavy">
-    <div class="container ai-content">
-      <div class="ai-text reveal-left">
-        <div class="badge badge-active">VECTOR · AI MENTOR</div>
-        <h2>An Advisor That Actually <span class="text-accent">Knows You</span></h2>
-        <p>Vector isn't a generic chatbot. It reads your goals, open tasks, habits, and calendar — then tells you exactly what to do next, in the words of the frameworks that built real businesses.</p>
-        <ul class="ai-features">
-          <li><span class="text-accent">◎</span> Plan my day — priorities, focus blocks &amp; habits included</li>
-          <li><span class="text-accent">◎</span> Prioritize &amp; break down tasks from your real board</li>
-          <li><span class="text-accent">◎</span> Plan a video — structure, shot list, shoot tips &amp; edit tutorial</li>
-          <li><span class="text-accent">◎</span> Write deliverables — offers, sales scripts, content plans</li>
-          <li><span class="text-accent">◎</span> Voice mode — talk to Vector and hear replies aloud</li>
-          <li><span class="text-accent">◎</span> Council mode: a panel of mentor perspectives, one verdict</li>
+  <!-- ── FEATURE DETAIL: MENTOR ──────────────────── -->
+  <section id="mentor" class="section">
+    <div class="container split">
+      <div class="split-text reveal">
+        <span class="badge">Vector · AI Mentor</span>
+        <h2 class="section-title left">An Advisor That Actually <span class="dim">Knows You</span></h2>
+        <p class="section-sub left">Vector isn't a generic chatbot. It reads your goals, open tasks, habits, and calendar — then tells you exactly what to do next, in the words of the frameworks that built real businesses.</p>
+        <ul class="checklist">
+          <li>Plan my day — priorities, focus blocks &amp; habits included</li>
+          <li>Prioritize &amp; break down tasks from your real board</li>
+          <li>Plan a video — structure, shot list, shoot tips &amp; edit tutorial</li>
+          <li>Write deliverables — offers, sales scripts, content plans</li>
+          <li>Voice mode — talk to Vector and hear replies aloud</li>
+          <li>Council mode: a panel of mentor perspectives, one verdict</li>
         </ul>
       </div>
-      <div class="ai-visual reveal-right">
-        <div class="mentor-chat glass shadow-premium">
-          <div class="mentor-chat-head">
-            <span class="mentor-chat-avatar"><img src="assets/img/brand/vector-logo.svg" alt="Vector" /></span>
-            <div>
-              <strong>Vector</strong>
-              <span>One advisor. Every framework.</span>
-            </div>
+      <div class="chat reveal">
+        <div class="chat-head">
+          <span class="msg-avatar"><img src="assets/img/brand/vector-logo.svg" alt="Vector" /></span>
+          <div>
+            <strong>Vector</strong>
+            <span>One advisor. Every framework.</span>
           </div>
-          <div class="mentor-bubble mentor-bubble-user">Should I run ads or post more content this month?</div>
-          <div class="mentor-bubble mentor-bubble-ai">
-            <p><strong>Fix the offer before you buy traffic.</strong> You have 2 warm leads sitting in your task board — close those first, document the result, then content amplifies what already converts.</p>
-            <span class="mentor-source">Hormozi · Gadzhi frameworks → applied to your tasks</span>
-          </div>
-          <div class="mentor-typing"><span></span><span></span><span></span></div>
         </div>
+        <p class="bubble bubble-user chat-user">Should I run ads or post more content this month?</p>
+        <div class="bubble bubble-ai">
+          <p><strong>Fix the offer before you buy traffic.</strong> You have 2 warm leads sitting in your task board — close those first, document the result, then content amplifies what already converts.</p>
+          <span class="chat-source">Hormozi · Gadzhi frameworks → applied to your tasks</span>
+        </div>
+        <div class="typing" aria-hidden="true"><span></span><span></span><span></span></div>
       </div>
     </div>
   </section>
 
-  <!-- ── FEATURES ─────────────────────────────── -->
-  <section id="features" class="features reveal">
+  <!-- ── FEATURES ────────────────────────────────── -->
+  <section id="features" class="section">
     <div class="container">
-      <div class="section-header reveal">
-        <h4>The Full Stack</h4>
-        <h2>Mentorship + Execution in <span class="text-accent">One Workspace</span></h2>
+      <div class="section-head reveal">
+        <p class="eyebrow">The Full Stack</p>
+        <h2 class="section-title">Mentorship + Execution in <span class="dim">One Workspace</span></h2>
       </div>
-      <div class="features-grid">
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">◇</div>
+      <div class="grid grid-4">
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-solid fa-diamond"></i></span>
           <h3>Vector AI Mentor</h3>
           <p>Trained on 10,000+ mentor videos and top books. Plans your day, prioritizes work, and writes real deliverables from your data.</p>
-        </div>
-        <div class="feature-card glass reveal featured-update">
-          <div class="badge">New</div>
-          <div class="feature-icon">🎬</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-badge">New</span>
+          <span class="card-icon"><i class="fa-solid fa-video"></i></span>
           <h3>Plan a Video</h3>
           <p>Interactive clarifying questions, then a full production plan — concept, hook, structure, shot list, how to shoot, and a step-by-step edit tutorial.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">⚖️</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-solid fa-scale-balanced"></i></span>
           <h3>Mentor Council</h3>
           <p>A panel of mentor perspectives debates your decision, then issues one binding next move. For high-stakes calls. Pro Max.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">📚</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-solid fa-book-open"></i></span>
           <h3>10,000+ Video Knowledge Base</h3>
           <p>Business, content, performance &amp; strategy frameworks synthesized from 10,000+ uploaded mentor videos — retrieved on demand for your situation.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">◎</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-solid fa-bullseye"></i></span>
           <h3>Active Focus</h3>
           <p>One objective fills the screen. Momentum timer, goal context up top, zero clutter — built for deep work on what matters.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">▦</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-solid fa-table-columns"></i></span>
           <h3>Goal-Linked Tasks</h3>
           <p>Board, priorities, and AI suggestions tied to active goals — so every block moves revenue, launch, or audience forward.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">🗓️</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-regular fa-calendar"></i></span>
           <h3>Google Calendar Sync</h3>
           <p>Plan the day with Vector, then place blocks on your calendar. Meetings and execution in one view.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">💎</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-solid fa-terminal"></i></span>
           <h3>Command Palette</h3>
           <p><kbd>Ctrl + K</kbd> from anywhere. Capture tasks, switch views, ask Vector — keyboard speed for operators.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">🔔</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-regular fa-bell"></i></span>
           <h3>Recalibration Pulse</h3>
           <p>Gentle audio every few minutes pulls you back when context-switching threatens the block. Stay in the work.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">🌱</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-solid fa-seedling"></i></span>
           <h3>Habit Garden</h3>
           <p>Non-negotiable daily systems visualized. Streaks and consistency for the founder who can't afford to slip.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">📈</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-solid fa-chart-simple"></i></span>
           <h3>Analytics</h3>
           <p>Estimated vs. actual time. See where your weeks go and whether you're spending on leverage or busywork.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">🛡️</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-regular fa-window-restore"></i></span>
           <h3>Floating Widget</h3>
           <p>Always-on-top mini controller. Your current task stays visible across every app while you work.</p>
-        </div>
-        <div class="feature-card glass reveal">
-          <div class="feature-icon">☁️</div>
+        </article>
+        <article class="card feature reveal">
+          <span class="card-icon"><i class="fa-solid fa-cloud"></i></span>
           <h3>Cloud Sync</h3>
           <p>Tasks, goals, habits, and progress backed up and synced across devices automatically.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ─────────────────────────────────── -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Simple Pricing</p>
+        <h2 class="section-title">Try Free for <span class="dim">3 Days</span></h2>
+        <p class="section-sub">Download Flow, sign up, and get full Pro access free for 3 days. Then choose Pro or Pro Max — cancel anytime.</p>
+      </div>
+
+      <div class="trial-banner reveal">
+        <span class="trial-icon" aria-hidden="true">*</span>
+        <div>
+          <strong>3-Day Free Pro Trial</strong>
+          <p>Every new account gets full Pro features — unlimited tasks, Vector AI mentoring, calendar sync, and more. No credit card required to start.</p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <article class="plan plan-featured reveal">
+          <span class="plan-label">Start Here</span>
+          <h3>Pro</h3>
+          <p class="price">$9.99<span>/mo</span></p>
+          <p class="plan-desc">Full execution OS + daily AI mentoring.</p>
+          <ul class="checklist">
+            <li>Unlimited tasks &amp; habits</li>
+            <li>$2/mo Vector AI budget</li>
+            <li>Google Calendar sync</li>
+            <li>Cloud sync &amp; analytics</li>
+            <li>Proactive check-ins</li>
+            <li>Custom focus sounds</li>
+          </ul>
+          <div class="plan-actions">
+            <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-Setup-2.8.0.exe" class="btn btn-light" download>Start Free Trial</a>
+            <button type="button" class="btn btn-dark checkout-btn" data-plan="monthly" data-tier="pro">Subscribe to Pro</button>
+          </div>
+        </article>
+
+        <article class="plan reveal">
+          <span class="plan-label plan-label-dark">Most Power</span>
+          <h3>Pro Max</h3>
+          <p class="price">$19.99<span>/mo</span></p>
+          <p class="plan-desc">Maximum mentor power for serious builders.</p>
+          <ul class="checklist">
+            <li>Everything in Pro</li>
+            <li>3× Vector AI usage</li>
+            <li>Vector Most Capable model</li>
+            <li>Mentor Council mode</li>
+            <li>Priority processing &amp; support</li>
+          </ul>
+          <div class="plan-actions">
+            <button type="button" class="btn btn-light checkout-btn" data-plan="monthly" data-tier="pro_max">Get Pro Max</button>
+          </div>
+        </article>
+      </div>
+
+      <p class="annual reveal">
+        Pro annual <button type="button" class="link-btn checkout-btn" data-plan="annual" data-tier="pro">$59.99/yr</button>
+        · Pro Max annual <button type="button" class="link-btn checkout-btn" data-plan="annual" data-tier="pro_max">$143.99/yr</button>
+      </p>
+
+      <div class="downloads reveal">
+        <p>Already have an account?</p>
+        <div class="btn-row">
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-Setup-2.8.0.exe" class="btn btn-dark" download><i class="fa-brands fa-windows"></i> Windows installer</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-2.8.0-debug.apk" class="btn btn-dark" download><i class="fa-brands fa-android"></i> Android APK</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── PRICING ──────────────────────────────── -->
-  <section id="pricing" class="cta">
-    <div class="container">
-      <div class="cta-card glass-heavy shadow-premium">
-        <h4>Simple Pricing</h4>
-        <h2>Try Free for <span class="text-accent">3 Days</span></h2>
-        <p>Download Flow, sign up, and get full Pro access free for 3 days. Then choose Pro or Pro Max — cancel anytime.</p>
-
-        <div class="pricing-trial-banner glass reveal">
-          <span class="pricing-trial-icon">✦</span>
-          <div>
-            <strong>3-Day Free Pro Trial</strong>
-            <p>Every new account gets full Pro features — unlimited tasks, Vector AI mentoring, calendar sync, and more. No credit card required to start.</p>
-          </div>
-        </div>
-
-        <div class="pricing-grid pricing-grid-two">
-          <div class="pricing-card glass featured">
-            <div class="best-value">START HERE</div>
-            <div class="price">$9.99<span>/mo</span></div>
-            <h3>Pro</h3>
-            <p>Full execution OS + daily AI mentoring.</p>
-            <ul class="pricing-features">
-              <li>Unlimited tasks &amp; habits</li>
-              <li>$2/mo Vector AI budget</li>
-              <li>Google Calendar sync</li>
-              <li>Cloud sync &amp; analytics</li>
-              <li>Proactive check-ins</li>
-              <li>Custom focus sounds</li>
-            </ul>
-            <div style="display:flex;flex-direction:column;gap:10px;margin-top:auto;width:100%;">
-              <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-Setup-2.8.0.exe" class="btn btn-primary" download>Start Free Trial</a>
-              <button class="btn btn-ghost checkout-btn" data-plan="monthly" data-tier="pro">Subscribe to Pro</button>
-            </div>
-          </div>
-
-          <div class="pricing-card glass featured-max">
-            <div class="best-value">MOST POWER</div>
-            <div class="price">$19.99<span>/mo</span></div>
-            <h3>Pro Max</h3>
-            <p>Maximum mentor power for serious builders.</p>
-            <ul class="pricing-features">
-              <li>Everything in Pro</li>
-              <li>3× Vector AI usage</li>
-              <li>Vector Most Capable model</li>
-              <li>Mentor Council mode</li>
-              <li>Priority processing &amp; support</li>
-            </ul>
-            <button class="btn btn-primary checkout-btn" data-plan="monthly" data-tier="pro_max" style="margin-top:auto;">Get Pro Max</button>
-          </div>
-        </div>
-
-        <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--text-muted);">
-          Pro annual <button class="checkout-btn" data-plan="annual" data-tier="pro" style="background:none;border:none;color:var(--accent);cursor:pointer;font-weight:700;font-size:13px;text-decoration:underline;">$59.99/yr</button>
-          · Pro Max annual <button class="checkout-btn" data-plan="annual" data-tier="pro_max" style="background:none;border:none;color:#44ccff;cursor:pointer;font-weight:700;font-size:13px;text-decoration:underline;">$143.99/yr</button>
-        </p>
-
-        <div class="download-section" style="margin-top:48px">
-          <p class="text-muted" style="margin-bottom:16px;">Already have an account?</p>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-            <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-Setup-2.8.0.exe" class="btn btn-ghost" download>
-              &#x2193; Windows installer
-            </a>
-            <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-2.8.0-debug.apk" class="btn btn-ghost" download>
-              &#x2193; Android APK
-            </a>
-          </div>
-        </div>
+  <!-- ── FAQ ─────────────────────────────────────── -->
+  <section id="faq" class="section">
+    <div class="container narrow">
+      <div class="section-head reveal">
+        <p class="eyebrow">Common Questions</p>
+        <h2 class="section-title">Everything You <span class="dim">Need to Know</span></h2>
       </div>
-    </div>
-  </section>
-
-  <!-- ── FAQ ─────────────────────────────────── -->
-  <section id="faq" class="faq-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h4>Common Questions</h4>
-        <h2>Everything You <span class="text-accent">Need to Know</span></h2>
-      </div>
-      <div class="faq-list">
-        <details class="faq-item glass reveal">
+      <div class="faq">
+        <details class="faq-item reveal">
           <summary>Who is Flow built for?</summary>
           <p>Entrepreneurs, founders, creators, and anyone in motion — people actively chasing a goal like revenue, a launch, an audience, or a fitness target. If you want a mentor that knows where you're going and a system to actually get there, Flow is for you.</p>
         </details>
-        <details class="faq-item glass reveal">
+        <details class="faq-item reveal">
           <summary>What does it mean that Vector is "trained on" these mentors?</summary>
           <p>Vector's knowledge base synthesizes proven frameworks from <strong>10,000+ uploaded videos</strong> and top business &amp; productivity books — from operators like Alex Hormozi, Iman Gadzhi, Ali Abdaal, David Goggins, Nik Setting, Tony Robbins, Jeremy Miner and more. It applies those frameworks to your real goals and tasks in its own words. It never impersonates real people or fabricates quotes.</p>
         </details>
-        <details class="faq-item glass reveal">
+        <details class="faq-item reveal">
           <summary>Can Vector help me plan a video?</summary>
           <p>Yes. Ask Vector to plan a video and it walks you through clarifying choices (platform, length, tone), then delivers a full production plan — concept, hook, structure, shot list, how to shoot, and a beginner-friendly editing tutorial.</p>
         </details>
-        <details class="faq-item glass reveal">
+        <details class="faq-item reveal">
           <summary>What is the Mentor Council?</summary>
           <p>For high-stakes decisions, Council mode (Pro Max) runs your question through multiple mentor perspectives — business, content, performance, and strategy — then synthesizes one clear, binding next move instead of a wall of generic advice.</p>
         </details>
-        <details class="faq-item glass reveal">
+        <details class="faq-item reveal">
           <summary>What platforms is Flow available on?</summary>
           <p>Flow runs on Windows 10 and Windows 11 via the desktop app, and on Android phones and tablets via the APK. iOS is coming next — the mobile app shares the same codebase via Capacitor.</p>
         </details>
-        <details class="faq-item glass reveal">
+        <details class="faq-item reveal">
           <summary>How does the free trial work?</summary>
           <p>Download Flow, create an account, and you automatically get 3 days of full Pro access — unlimited tasks, Vector AI mentoring, calendar sync, and everything else in Pro. No credit card required to start. When the trial ends, choose Pro or Pro Max to keep going.</p>
         </details>
-        <details class="faq-item glass reveal">
+        <details class="faq-item reveal">
           <summary>What's the difference between Pro and Pro Max?</summary>
           <p>Pro gives you unlimited execution tools plus a <strong>$2/month</strong> Vector AI budget. Pro Max includes <strong>3× Vector AI usage</strong>, unlocks Vector Most Capable, Mentor Council deliberation, and priority support — built for people who run their week on Vector.</p>
         </details>
-        <details class="faq-item glass reveal">
+        <details class="faq-item reveal">
           <summary>What happens to my data if I cancel?</summary>
           <p>Your data is always yours. We store everything securely in the cloud and you can export it at any time. Cancelling only removes Pro features — your tasks and history stay intact.</p>
         </details>
-        <details class="faq-item glass reveal">
+        <details class="faq-item reveal">
           <summary>Can I use Flow offline?</summary>
           <p>Yes. The app works fully offline — tasks, timer, and habits all work without internet. Your data syncs automatically the next time you connect.</p>
         </details>
@@ -561,42 +571,38 @@
     </div>
   </section>
 
-  <!-- ── FINAL CTA ─────────────────────────────── -->
-  <section class="final-cta reveal">
+  <!-- ── FINAL CTA ───────────────────────────────── -->
+  <section class="section section-final">
     <div class="container">
-      <div class="final-cta-content glass">
-        <h2>Stop drifting. <span class="text-accent">Start your free trial.</span></h2>
-        <p>Download Flow, get 3 days of Pro free, and let a mentor trained on the best tell you exactly what to do next.</p>
-        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px;">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-Setup-2.8.0.exe" class="btn btn-primary btn-lg btn-glow" download>Start Free Trial</a>
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-2.8.0-debug.apk" class="btn btn-ghost btn-lg" download>Android APK</a>
-          <a href="#pricing" class="btn btn-ghost btn-lg">View Plans</a>
+      <div class="final reveal">
+        <h2 class="section-title">Stop Drifting. <span class="dim">Start Your Free Trial.</span></h2>
+        <p class="section-sub">Download Flow, get 3 days of Pro free, and let a mentor trained on the best tell you exactly what to do next.</p>
+        <div class="btn-row">
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-Setup-2.8.0.exe" class="cta" download>Start Free Trial</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-2.8.0-debug.apk" class="btn btn-dark" download><i class="fa-brands fa-android"></i> Android APK</a>
+          <a href="#pricing" class="btn btn-dark">View Plans</a>
         </div>
-        <p style="margin-top:24px;font-size:13px;color:var(--text-muted);">Windows &amp; Android · 3-day free trial · No credit card</p>
+        <p class="final-meta">Windows &amp; Android · 3-day free trial · No credit card</p>
       </div>
     </div>
   </section>
 
-  <!-- ── FOOTER ───────────────────────────────── -->
-  <footer>
+  <!-- ── FOOTER ──────────────────────────────────── -->
+  <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <div class="logo" style="margin-bottom:16px;">
-            <img src="assets/img/brand/logo.png" alt="FLOW Logo" class="logo-img" />
-            <span class="logo-text">FLOW</span>
-          </div>
-          <p class="footer-tagline">Your AI mentor &amp; execution OS — trained on the best, built for people in motion.</p>
-          <div class="footer-social">
-            <a href="https://www.instagram.com/flowapp2026/" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.881.001 1.44 1.44 0 012.881-.001z"/></svg>
-            </a>
-            <a href="https://www.tiktok.com/@flow.app21" target="_blank" rel="noopener" aria-label="TikTok">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
-            </a>
+          <a href="/" class="footer-logo">
+            <span class="logo logo-sm"><img src="assets/logo.webp" alt="" width="52" height="52" /></span>
+            <span class="footer-wordmark">FLOW</span>
+          </a>
+          <p>Your AI mentor &amp; execution OS — trained on the best, built for people in motion.</p>
+          <div class="social">
+            <a href="https://www.instagram.com/flowapp2026/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@flow.app21" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
           </div>
         </div>
-        <div class="footer-links-group">
+        <div class="footer-col">
           <h5>Product</h5>
           <a href="#mentor">AI Mentor</a>
           <a href="#mentors">Knowledge</a>
@@ -605,14 +611,14 @@
           <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-Setup-2.8.0.exe" download>Windows</a>
           <a href="https://github.com/N1k0Devv/flow/releases/download/v2.7.0/Flow-2.8.0-debug.apk" download>Android APK</a>
         </div>
-        <div class="footer-links-group">
+        <div class="footer-col">
           <h5>Support</h5>
           <a href="#faq">FAQ</a>
           <a href="mailto:support@flowdaily.org">Contact Us</a>
           <a href="https://www.instagram.com/flowapp2026/" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.tiktok.com/@flow.app21" target="_blank" rel="noopener">TikTok</a>
         </div>
-        <div class="footer-links-group">
+        <div class="footer-col">
           <h5>Legal</h5>
           <a href="terms.html">Terms of Service</a>
           <a href="privacy.html">Privacy Policy</a>
@@ -621,57 +627,53 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Flow. All Rights Reserved.</p>
-        <p class="footer-made">Made for people chasing something bigger</p>
+        <p>Made for people chasing something bigger</p>
       </div>
     </div>
   </footer>
 
-  <!-- ── AUTH MODAL ────────────────────────────── -->
-  <div id="auth-modal" class="auth-modal">
+  <!-- ── AUTH MODAL ──────────────────────────────── -->
+  <div id="auth-modal" class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title">
     <div class="auth-card">
-      <div id="auth-loading" class="loading-overlay">
-        <div class="loader"></div>
-      </div>
-      <button id="close-auth" style="position:absolute;top:20px;right:20px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:20px;z-index:11;line-height:1;">✕</button>
-      <div id="auth-form-container">
-        <div style="text-align:center;margin-bottom:28px;">
-          <img src="assets/img/brand/logo.png" alt="Flow" style="height:40px;width:40px;border-radius:12px;margin-bottom:12px;" />
-          <h2 id="auth-title" style="font-size:22px;margin-bottom:6px;">Welcome Back</h2>
-          <p id="auth-subtitle" style="color:var(--text-muted);font-size:14px;">Sign in to your Flow account</p>
+      <div id="auth-loading" class="auth-loading"><span class="loader"></span></div>
+      <button type="button" id="close-auth" class="auth-close" aria-label="Close">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="auth-form-container" class="auth-body">
+        <div class="auth-head">
+          <span class="logo"><img src="assets/logo.webp" alt="" width="52" height="52" /></span>
+          <h2 id="auth-title">Welcome Back</h2>
+          <p id="auth-subtitle">Sign in to your Flow account</p>
         </div>
 
-        <button id="google-login-btn" class="btn btn-ghost" style="width:100%;display:flex;gap:12px;justify-content:center;padding:14px;border-radius:12px;margin-bottom:20px;font-family:var(--font-sans);font-size:14px;">
-          <img src="https://www.google.com/favicon.ico" alt="Google" style="width:18px;height:18px;filter:grayscale(1) invert(1);">
-          Continue with Google
+        <button type="button" id="google-login-btn" class="btn btn-light btn-block">
+          <i class="fa-brands fa-google"></i> Continue with Google
         </button>
 
-        <div class="auth-divider">
-          <span>or continue with email</span>
-        </div>
+        <div class="auth-divider"><span>or continue with email</span></div>
 
-        <form id="auth-form" style="display:flex;flex-direction:column;gap:16px;margin-top:20px;">
-          <div class="auth-input-group">
-            <label>Email Address</label>
-            <input type="email" id="auth-email" required placeholder="you@example.com" autocomplete="email">
-          </div>
-          <div class="auth-input-group">
-            <label>Password</label>
-            <input type="password" id="auth-password" required placeholder="••••••••" autocomplete="current-password">
-          </div>
-          <button type="submit" id="auth-submit" class="btn btn-primary" style="padding:14px;margin-top:4px;font-size:15px;">Sign In</button>
+        <form id="auth-form" class="auth-form">
+          <label class="field">
+            <span>Email Address</span>
+            <input type="email" id="auth-email" required placeholder="you@example.com" autocomplete="email" />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input type="password" id="auth-password" required placeholder="••••••••" autocomplete="current-password" />
+          </label>
+          <button type="submit" id="auth-submit" class="btn btn-light btn-block">Sign In</button>
         </form>
 
-        <div style="margin-top:20px;text-align:center;font-size:14px;color:var(--text-muted);">
+        <p class="auth-switch">
           <span id="auth-switch-text">Don't have an account?</span>
-          <button id="auth-switch-btn" style="background:none;border:none;color:var(--accent);cursor:pointer;padding:0 4px;font-weight:700;font-size:14px;">Sign Up</button>
-        </div>
+          <button type="button" id="auth-switch-btn" class="link-btn">Sign Up</button>
+        </p>
       </div>
     </div>
   </div>
 
   <script defer src="/_vercel/insights/script.js"></script>
   <script src="assets/js/config.js"></script>
-  <script src="assets/js/script.js"></script>
+  <script src="main.js"></script>
 </body>
-
 </html>
