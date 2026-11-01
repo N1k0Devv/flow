@@ -181,7 +181,7 @@
       <ul class="trial-points reveal">
         <li>3-day free Pro trial</li>
         <li>No credit card to start</li>
-        <li>Windows &amp; Android</li>
+        <li>Windows, Mac &amp; Android</li>
       </ul>
     </div>
   </section>
@@ -485,7 +485,7 @@
             <li>Custom focus sounds</li>
           </ul>
           <div class="plan-actions">
-            <a href="https://github.com/N1k0Devv/flow/releases/download/v3.1.0/Flow-Setup-3.1.0.exe" class="btn btn-light" download>Start Free Trial</a>
+            <a href="https://github.com/N1k0Devv/flow/releases/download/v3.1.0/Flow-Setup-3.1.0.exe" class="btn btn-light" data-dl-auto download>Start Free Trial</a>
             <button type="button" class="btn btn-dark checkout-btn" data-plan="monthly" data-tier="pro">Subscribe to Pro</button>
           </div>
         </article>
@@ -519,7 +519,7 @@
           <a href="https://github.com/N1k0Devv/flow/releases/download/v3.1.0/Flow-Setup-3.1.0.exe" class="btn btn-dark" download><i class="fa-brands fa-windows"></i> Windows installer</a>
           <a href="https://github.com/N1k0Devv/flow/releases/download/v3.1.0/Flow-3.1.0.apk" class="btn btn-dark" download><i class="fa-brands fa-android"></i> Android APK</a>
           <a href="https://github.com/N1k0Devv/flow/releases/download/v3.1.0/Flow-3.1.0-mac.dmg" class="btn btn-dark" title="First launch: right-click Flow, then Open (app is not yet notarized)" download><i class="fa-brands fa-apple"></i> Download for Mac</a>
-          <p style="font-size:.8rem;opacity:.7;margin-top:.5rem">Mac: on first launch, right-click Flow and choose Open (the app is not yet notarized).</p>
+          <p style="font-size:.8rem;opacity:.7;margin-top:.5rem">Version 3.1.0. Windows: run Flow-Setup-3.1.0.exe; if SmartScreen appears, click More info &rarr; Run anyway. Android: open Flow-3.1.0.apk and allow &ldquo;Install unknown apps&rdquo; for your browser when asked. Mac: open the DMG, drag Flow to Applications, then on first launch right-click Flow and choose Open (the app is not yet notarized).</p>
         </div>
       </div>
     </div>
@@ -580,12 +580,12 @@
         <h2 class="section-title">Stop Drifting. <span class="dim">Start Your Free Trial.</span></h2>
         <p class="section-sub">Download Flow, get 3 days of Pro free, and let a mentor trained on the best tell you exactly what to do next.</p>
         <div class="btn-row">
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v3.1.0/Flow-Setup-3.1.0.exe" class="cta" download>Start Free Trial</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v3.1.0/Flow-Setup-3.1.0.exe" class="cta" data-dl-auto download>Start Free Trial</a>
           <a href="https://github.com/N1k0Devv/flow/releases/download/v3.1.0/Flow-3.1.0.apk" class="btn btn-dark" download><i class="fa-brands fa-android"></i> Android APK</a>
           <a href="https://github.com/N1k0Devv/flow/releases/download/v3.1.0/Flow-3.1.0-mac.dmg" class="btn btn-dark" title="First launch: right-click Flow, then Open (app is not yet notarized)" download><i class="fa-brands fa-apple"></i> Download for Mac</a>
           <a href="#pricing" class="btn btn-dark">View Plans</a>
         </div>
-        <p class="final-meta">Windows &amp; Android · 3-day free trial · No credit card</p>
+        <p class="final-meta">Flow 3.1.0 for Windows, Mac &amp; Android · 3-day free trial · No credit card</p>
       </div>
     </div>
   </section>
@@ -679,5 +679,17 @@
   <script defer src="/_vercel/insights/script.js"></script>
   <script src="assets/js/config.js"></script>
   <script src="main.js"></script>
+  <script>
+    (function () {
+      var base = 'https://github.com/N1k0Devv/flow/releases/download/v3.1.0/';
+      var ua = navigator.userAgent || '';
+      var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var file = null, label = null;
+      if (/Android/i.test(ua)) { file = 'Flow-3.1.0.apk'; label = 'Start Free Trial (Android)'; }
+      else if (!isIOS && /Macintosh|Mac OS X/i.test(ua)) { file = 'Flow-3.1.0-mac.dmg'; label = 'Start Free Trial (Mac)'; }
+      if (!file) return;
+      document.querySelectorAll('a[data-dl-auto]').forEach(function (a) { a.href = base + file; a.textContent = label; });
+    })();
+  </script>
 </body>
 </html>
