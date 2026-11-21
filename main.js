@@ -27,6 +27,39 @@
     if (window.innerWidth > MOBILE_BREAKPOINT) setMenu(false);
   });
 
+  // ── Sticky nav: scrolled state + active section ──
+  const header = document.getElementById('site-header');
+  const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const navLinks = Array.from(document.querySelectorAll('.nav-link[data-section], .mobile-link[data-section]'));
+  const navSections = Array.from(new Set(navLinks.map((l) => l.dataset.section)))
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+
+  function setActive(id) {
+    navLinks.forEach((l) => {
+      const on = l.dataset.section === id;
+      l.classList.toggle('is-active', on);
+      if (on) l.setAttribute('aria-current', 'true');
+      else l.removeAttribute('aria-current');
+    });
+  }
+
+  if (navSections.length && 'IntersectionObserver' in window) {
+    const visible = new Map();
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => visible.set(e.target.id, e.isIntersecting));
+        const current = navSections.find((sec) => visible.get(sec.id));
+        setActive(current ? current.id : null);
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    navSections.forEach((sec) => sectionObserver.observe(sec));
+  }
+
   // ── Stat count-up ────────────────────────────
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
   const statValues = Array.from(document.querySelectorAll('.stat-value'));

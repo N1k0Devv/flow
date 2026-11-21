@@ -47,6 +47,36 @@
 <body>
   <div id="notification-container" aria-live="polite"></div>
 
+  <!-- ── SITE NAV (fixed) ────────────────────────── -->
+  <header class="header" id="site-header">
+    <a href="#home" class="logo" aria-label="Flow home">
+      <img src="assets/logo.webp" alt="" width="52" height="52" />
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="#mentors" class="nav-link" data-section="mentors">Mentors</a>
+      <a href="#features" class="nav-link" data-section="features">Features</a>
+      <a href="#pricing" class="nav-link" data-section="pricing">Pricing</a>
+      <a href="#faq" class="nav-link" data-section="faq">FAQ</a>
+      <a href="#download" class="nav-download"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Download</a>
+    </nav>
+
+    <button type="button" class="sign-in js-signin">Sign in</button>
+
+    <a href="#download" class="header-download" aria-label="Download Flow"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Download</a>
+
+    <button
+      type="button"
+      class="burger"
+      id="burger"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
   <!-- ── FIRST VIEWPORT ──────────────────────────── -->
   <section class="page" id="home">
     <div class="bg" aria-hidden="true">
@@ -58,31 +88,6 @@
       </video>
     </div>
 
-    <header class="header">
-      <a href="/" class="logo" aria-label="Flow home">
-        <img src="assets/logo.webp" alt="" width="52" height="52" />
-      </a>
-
-      <nav class="nav" aria-label="Primary">
-        <a href="#home" class="nav-link is-active" aria-current="page">Home</a>
-        <a href="#features" class="nav-link">Product</a>
-        <a href="#mentors" class="nav-link">Mentors</a>
-        <a href="#pricing" class="nav-link">Pricing</a>
-      </nav>
-
-      <button type="button" class="sign-in js-signin">Sign in</button>
-
-      <button
-        type="button"
-        class="burger"
-        id="burger"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <span></span><span></span><span></span>
-      </button>
-    </header>
 
     <div class="hero">
       <div class="trust anim" style="--d: 0.05s">
@@ -102,7 +107,30 @@
         Gadzhi, Goggins &amp; more, then turns that wisdom into your daily plan.
       </p>
 
-      <a href="#pricing" class="cta anim" style="--d: 0.4s">Start Free Trial</a>
+      <div class="hero-downloads anim" style="--d: 0.4s" id="hero-downloads">
+        <div class="dl-buttons">
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-Setup-3.2.4.exe" class="dl-btn is-primary" data-os="windows" download>
+            <i class="fa-brands fa-windows" aria-hidden="true"></i>
+            <span class="dl-text"><small>Download for</small>Windows</span>
+          </a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-3.2.4-mac.dmg" class="dl-btn" data-os="mac" download>
+            <i class="fa-brands fa-apple" aria-hidden="true"></i>
+            <span class="dl-text"><small>Download for</small>Mac</span>
+          </a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-3.2.4.apk" class="dl-btn" data-os="android" data-apk="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-3.2.4.apk" data-play="https://play.google.com/store/apps/details?id=com.n1kodev.flow" download>
+            <i class="fa-brands fa-android" aria-hidden="true"></i>
+            <span class="dl-text"><small>Download for</small>Android</span>
+          </a>
+        </div>
+        <p class="dl-meta">
+          Free 3-day Pro trial · No credit card · v3.2.4
+          <span class="dl-sep" aria-hidden="true">·</span>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-3.2.4-mac-intel.dmg" download>Intel Mac</a>
+          <span class="dl-sep dl-apk-alt" aria-hidden="true" hidden>·</span>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-3.2.4.apk" class="dl-apk-alt" download hidden>Android APK</a>
+        </p>
+        <p class="dl-note" data-note="mac"><i class="fa-brands fa-apple" aria-hidden="true"></i> Mac first launch: right-click Flow &rsaquo; Open</p>
+      </div>
     </div>
 
     <footer class="stats" aria-label="Flow in numbers">
@@ -133,12 +161,13 @@
   <div class="menu-overlay" id="menu-overlay" hidden></div>
   <div class="mobile-menu" id="mobile-menu" hidden>
     <nav class="mobile-links" aria-label="Mobile">
-      <a href="#home" class="mobile-link is-active" style="--i: 0">Home</a>
-      <a href="#features" class="mobile-link" style="--i: 1">Product</a>
-      <a href="#mentors" class="mobile-link" style="--i: 2">Mentors</a>
-      <a href="#pricing" class="mobile-link" style="--i: 3">Pricing</a>
+      <a href="#mentors" class="mobile-link" data-section="mentors" style="--i: 0">Mentors</a>
+      <a href="#features" class="mobile-link" data-section="features" style="--i: 1">Features</a>
+      <a href="#pricing" class="mobile-link" data-section="pricing" style="--i: 2">Pricing</a>
+      <a href="#faq" class="mobile-link" data-section="faq" style="--i: 3">FAQ</a>
     </nav>
-    <button type="button" class="mobile-sign-in js-signin" style="--i: 4">Sign in</button>
+    <a href="#download" class="mobile-download" style="--i: 4"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Download Flow</a>
+    <button type="button" class="mobile-sign-in js-signin" style="--i: 5">Sign in</button>
   </div>
 
   <!-- ── VECTOR CONSOLE ──────────────────────────── -->
@@ -574,18 +603,20 @@
   </section>
 
   <!-- ── FINAL CTA ───────────────────────────────── -->
-  <section class="section section-final">
+  <section class="section section-final" id="download">
     <div class="container">
       <div class="final reveal">
         <h2 class="section-title">Stop Drifting. <span class="dim">Start Your Free Trial.</span></h2>
         <p class="section-sub">Download Flow, get 3 days of Pro free, and let a mentor trained on the best tell you exactly what to do next.</p>
         <div class="btn-row">
           <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-Setup-3.2.4.exe" class="cta" data-dl-auto download>Start Free Trial</a>
-          <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-3.2.4.apk" class="btn btn-dark" download><i class="fa-brands fa-android"></i> Android APK</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-Setup-3.2.4.exe" class="btn btn-dark" download><i class="fa-brands fa-windows"></i> Windows installer</a>
           <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-3.2.4-mac.dmg" class="btn btn-dark" title="First launch: right-click Flow, then Open (app is not yet notarized)" download><i class="fa-brands fa-apple"></i> Download for Mac</a>
+          <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-3.2.4.apk" class="btn btn-dark" download><i class="fa-brands fa-android"></i> Android APK</a>
           <a href="#pricing" class="btn btn-dark">View Plans</a>
         </div>
         <p class="final-meta">Flow 3.2.4 for Windows, Mac &amp; Android · 3-day free trial · No credit card</p>
+        <p class="final-meta final-help">Windows: if SmartScreen appears, click More info &rarr; Run anyway. Mac (Apple Silicon; Intel Macs use <a href="https://github.com/N1k0Devv/flow/releases/download/v3.2.4/Flow-3.2.4-mac-intel.dmg" download>the Intel DMG</a>): drag Flow to Applications, then right-click Flow &rsaquo; Open on first launch. Android: allow &ldquo;Install unknown apps&rdquo; when asked.</p>
       </div>
     </div>
   </section>
@@ -683,14 +714,42 @@
   <script>
     (function () {
       var base = 'https://github.com/N1k0Devv/flow/releases/download/v3.2.4/';
+      // Flip to true once Flow is publicly listed on Google Play (it is in closed testing for now,
+      // so the store page 404s for the public). Android then goes to Play and the APK becomes a small link.
+      var PLAY_STORE_LIVE = false;
       var ua = navigator.userAgent || '';
       var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var os = 'windows';
+      if (/Android/i.test(ua)) os = 'android';
+      else if (!isIOS && /Macintosh|Mac OS X/i.test(ua)) os = 'mac';
+
+      // Hero download buttons: make the visitor's platform primary and put it first.
+      var hero = document.getElementById('hero-downloads');
+      if (hero) {
+        var android = hero.querySelector('.dl-btn[data-os="android"]');
+        if (PLAY_STORE_LIVE && android) {
+          android.href = android.getAttribute('data-play');
+          android.removeAttribute('download');
+          android.target = '_blank';
+          android.rel = 'noopener';
+          android.querySelector('i').className = 'fa-brands fa-google-play';
+          android.querySelector('.dl-text').innerHTML = '<small>Get it on</small>Google Play';
+          hero.querySelectorAll('.dl-apk-alt').forEach(function (el) { el.hidden = false; });
+        }
+        hero.querySelectorAll('.dl-btn').forEach(function (a) {
+          a.classList.toggle('is-primary', a.getAttribute('data-os') === os);
+        });
+        hero.setAttribute('data-os', os);
+      }
+
+      // "Start Free Trial" links elsewhere on the page.
       var file = null, label = null;
-      if (/Android/i.test(ua)) { file = 'Flow-3.2.4.apk'; label = 'Start Free Trial (Android)'; }
-      else if (!isIOS && /Macintosh|Mac OS X/i.test(ua)) { file = 'Flow-3.2.4-mac.dmg'; label = 'Start Free Trial (Mac)'; }
+      if (os === 'android') { file = 'Flow-3.2.4.apk'; label = 'Start Free Trial (Android)'; }
+      else if (os === 'mac') { file = 'Flow-3.2.4-mac.dmg'; label = 'Start Free Trial (Mac)'; }
       if (!file) return;
       document.querySelectorAll('a[data-dl-auto]').forEach(function (a) { a.href = base + file; a.textContent = label; });
     })();
+  </script>
   </script>
 </body>
 </html>
